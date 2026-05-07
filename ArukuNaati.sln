@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArukuNaati.Server", "ArukuNaati.Server\ArukuNaati.Server.csproj", "{DC802DDC-E337-4808-839A-DB69D3F57BEB}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "arukunaati.client", "arukunaati.client\arukunaati.client.esproj", "{2A1A7683-3DD6-4E34-AF28-3C616361E1A0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC802DDC-E337-4808-839A-DB69D3F57BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC802DDC-E337-4808-839A-DB69D3F57BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC802DDC-E337-4808-839A-DB69D3F57BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC802DDC-E337-4808-839A-DB69D3F57BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A1A7683-3DD6-4E34-AF28-3C616361E1A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A1A7683-3DD6-4E34-AF28-3C616361E1A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A1A7683-3DD6-4E34-AF28-3C616361E1A0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2A1A7683-3DD6-4E34-AF28-3C616361E1A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A1A7683-3DD6-4E34-AF28-3C616361E1A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A1A7683-3DD6-4E34-AF28-3C616361E1A0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72E18028-4C8C-4DA6-B4B7-D87C24D7B59D}
+	EndGlobalSection
+EndGlobal
