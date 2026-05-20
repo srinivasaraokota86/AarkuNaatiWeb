@@ -2,11 +2,8 @@
 
 namespace ArukuNaati.Server.Models
 {
-    public class RegisterRequest
+    public class LoginRequest
     {
-        [Required]
-        public string Name { get; set; }
-
         [Required]
         [EmailAddress]
         public string Email { get; set; }

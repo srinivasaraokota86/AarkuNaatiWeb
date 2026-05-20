@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "neyCRfMWrvMH9ZhEqVOXvA7HC4/1+glg4MGM41XPvjI=",
+  "Hash": "Pc4IaqigdiUhCWRKcu2W8CsV8PrtD5alMqWccq0P7UU=",
   "Source": "ArukuNaati.Server",
   "BasePath": "_content/ArukuNaati.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "D:\\ArukuNaati\\arukunaati.client\\arukunaati.client.esproj",
+      "Identity": "D:\\ArukunaatiWeb\\arukunaati.client\\arukunaati.client.esproj",
       "Version": 2,
       "Source": "arukunaati.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",

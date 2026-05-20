@@ -1,10 +1,28 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import RegistrationForm from "./RegistrationForm";
+import LoginForm from "./LoginForm";
 
 export default function App() {
+
     return (
-        <div>
-            <RegistrationForm />
-        </div>
+        <BrowserRouter>
+
+            <Routes>
+
+                <Route
+                    path="/"
+                    element={<RegistrationForm />}
+                />
+
+                <Route
+                    path="/login"
+                    element={<LoginForm />}
+                />
+
+            </Routes>
+
+        </BrowserRouter>
     );
 }
 

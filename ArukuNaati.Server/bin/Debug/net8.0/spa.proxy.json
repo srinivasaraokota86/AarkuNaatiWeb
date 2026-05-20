@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:5173",
 "RedirectUrl": "",
 "LaunchCommand": "npm run dev",
-"WorkingDirectory": "D:\\ArukuNaati\\ArukuNaati.Server\\..\\arukunaati.client",
+"WorkingDirectory": "D:\\ArukunaatiWeb\\ArukuNaati.Server\\..\\arukunaati.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

@@ -1,1 +1,2 @@
 D:\ArukuNaati\arukunaati.client\obj\Debug\arukunaati.client.esproj.CoreCompileInputs.cache
+D:\ArukunaatiWeb\arukunaati.client\obj\Debug\arukunaati.client.esproj.CoreCompileInputs.cache

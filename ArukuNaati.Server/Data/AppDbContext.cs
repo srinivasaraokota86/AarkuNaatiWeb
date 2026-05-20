@@ -12,7 +12,7 @@ namespace ArukuNaati.Server.Data
             }
 
             public DbSet<User> Users { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        //public DbSet<Customer> Customers { get; set; }
 
     }
 }

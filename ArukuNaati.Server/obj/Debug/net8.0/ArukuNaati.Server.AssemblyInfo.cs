@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArukuNaati.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+37fdc4a80397471f26f719a742fa9551af31d058")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArukuNaati.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArukuNaati.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

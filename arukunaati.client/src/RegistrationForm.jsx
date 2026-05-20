@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./RegistrationForm.css";
+import { Link } from "react-router-dom";
 
 export default function RegistrationForm() {
     const [formData, setFormData] = useState({
@@ -28,8 +29,20 @@ export default function RegistrationForm() {
             );
 
             setMessage(response.data.message);
-        } catch (error) {
-            setMessage("Registration failed. Try again.", error);
+        }
+        //catch (error) {
+        //    setMessage("Registration failed. Try again.", error);
+        //}
+        catch (error) {
+
+            console.log(error);
+
+            if (error.response) {
+                setMessage(error.response.data.message);
+            }
+            else {
+                setMessage("Server not responding");
+            }
         }
     }
 
@@ -49,7 +62,16 @@ export default function RegistrationForm() {
 
                 <button type="submit">Register</button>
 
+
                 {message && <p className="message">{message}</p>}
+
+                <p>
+                    Already registered?
+
+                    <Link to="/login">
+                        Login Here
+                    </Link>
+                </p>
             </form>
         </div>
     );
