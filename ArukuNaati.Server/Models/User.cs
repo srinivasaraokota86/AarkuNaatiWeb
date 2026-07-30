@@ -6,18 +6,17 @@ namespace ArukuNaati.Server.Models
         public class User
         {
             [Key]
-            public int Id { get; set; }
+            public int UserId { get; set; }
 
-            [Required]
-            public string Name { get; set; }
+            public string? UserName { get; set; }
 
-            [Required, EmailAddress]
-            public string Email { get; set; }
+            public string? Password { get; set; }
+        public string? Email { get; set; }
+        public string? ResetToken { get; set; }
+        public DateTime? ResetTokenExpiry { get; set; }
 
-            [Required]
-            public string Password { get; set; }
-        }
     }
+}
 
 
 

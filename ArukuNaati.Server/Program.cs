@@ -1,10 +1,16 @@
 using ArukuNaati.Server.Data;
+using ArukuNaati.Server.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -20,15 +26,17 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod()
               .AllowAnyOrigin());
 });
+builder.Services.AddScoped<EmailService>();
+
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<AcumaticaService>();
 
 var app = builder.Build();
 
+
 // Enable Swagger
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
+app.UseSwagger();
     app.UseSwaggerUI();
-}
 
 // Enable CORS
 app.UseCors("AllowAll");
@@ -44,6 +52,7 @@ app.Run();
 
 
 
+//builder.Services.AddScoped<EmailService>();
 
 //using ArukuNaati.Server.Data;
 //using Microsoft.EntityFrameworkCore;
