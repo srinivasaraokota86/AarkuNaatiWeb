@@ -1,0 +1,134 @@
+/* ListScreen.css */
+
+.list-container {
+    padding: 20px;
+    background: #f5f7fa;
+    min-height: 100vh;
+}
+
+.list-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2e7d32;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-btn {
+    background: #2e7d32;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+    .add-btn:hover {
+        background: #1b5e20;
+    }
+
+.list-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    .list-table th {
+        background: #2e7d32;
+        color: white;
+        padding: 14px;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    .list-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .list-table tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    .list-table tr:hover {
+        background: #eef7ee;
+    }
+
+.edit-btn,
+.delete-btn {
+    border: none;
+    padding: 8px 10px;
+    margin-right: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.edit-btn {
+    background: #1976d2;
+    color: white;
+}
+
+    .edit-btn:hover {
+        background: #1565c0;
+    }
+
+.delete-btn {
+    background: #d32f2f;
+    color: white;
+}
+
+    .delete-btn:hover {
+        background: #b71c1c;
+    }
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .list-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .top-bar {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.top-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.add-btn {
+    background: #69b34c;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+    .add-btn:hover {
+        background: green;
+    }

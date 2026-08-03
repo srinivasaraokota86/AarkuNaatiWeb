@@ -1,6 +1,8 @@
 ﻿using ArukuNaati.Server.Data;
 using ArukuNaati.Server.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace ArukuNaati.Server.Controllers
 {
@@ -21,16 +23,22 @@ namespace ArukuNaati.Server.Controllers
         public async Task<IActionResult> CreateCustomer(Customer customer)
         {
             // Email duplicate check
-            if (await _context.Customers.AnyAsync(c => c.Email == customer.Email))
-                return BadRequest("Email already exists.");
+            if (await _context.Customers.AnyAsync(c => c.Email == customer.Email)) // Fixes CS1061
+                return BadRequest(new
+                {
+                    message = "Email already exists"
+                });
 
             // Generate CustomerID
-            customer.CustomerID = "C" + (1000 + _context.Customers.Count() + 1);
+            customer.CustomerId = "C" + (1000 + _context.Customers.Count() + 1);
 
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
 
-            return Ok(customer);
+            return Ok(new
+            {
+                message = "Customer saved successfully"
+            });
         }
 
         // Get All
@@ -39,6 +47,52 @@ namespace ArukuNaati.Server.Controllers
         {
             var data = await _context.Customers.ToListAsync();
             return Ok(data);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCustomer(
+    string id,
+    Customer customer)
+
+        {
+            if (id != customer.CustomerId)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(customer).State =
+                EntityState.Modified;
+
+                await _context.SaveChangesAsync();
+            return Ok(new
+            {
+                message = "Customer Updated Successfully"
+            });
+
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCustomer(
+    string id
+)
+        {
+            var customer =
+                await _context.Customers.FindAsync(id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            _context.Customers.Remove(customer);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                message = "Customer Deleted Successfully"
+            });
+
         }
     }
 

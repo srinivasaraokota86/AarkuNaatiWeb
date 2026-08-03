@@ -13,7 +13,28 @@ namespace ArukuNaati.Server.Data
 
             public DbSet<User> Users { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Farmers> Farmers { get; set; }
 
+        public DbSet<FarmerAddress> FarmerAddresses { get; set; }
+
+       // public DbSet<FarmerLand> FarmerLands { get; set; }
+
+       // public DbSet<FarmerCrop> FarmerCrops { get; set; }
+
+        //public DbSet<CropType> CropTypes { get; set; }
+
+        //public DbSet<SoilType> SoilTypes { get; set; }
+
+       // public DbSet<IrrigationType> IrrigationTypes { get; set; }
+
+        public DbSet<State> States { get; set; }
+
+        public DbSet<District> Districts { get; set; }
+
+        public DbSet<Mandal> Mandals { get; set; }
+
+        public DbSet<Village> Villages { get; set; }
+        public DbSet<Equipment> Equipment { get; set; }
     }
 }
 
