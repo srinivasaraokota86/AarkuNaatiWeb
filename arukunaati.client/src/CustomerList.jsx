@@ -74,13 +74,14 @@ export default function CustomerList() {
         <div className="list-container">
 
             {/* Top Bar */}
-            <div className="top-bar">
+            <div className="top-section">
+                <div className="top-row">
 
-                <h2>
+
+                    <h2 className="record-count">
                     Total Customers: {customers.length}
                 </h2>
 
-                <div className="top-actions">
 
                     <button
                         className="add-btn"
@@ -90,8 +91,11 @@ export default function CustomerList() {
                     >
                         Add Customer
                     </button>
+                    </div>
+                <h1 className="page-title">
+                    Customers list
+                </h1>
 
-                </div>
 
             </div>
 
@@ -102,7 +106,7 @@ export default function CustomerList() {
 
                     <tr>
 
-                        <th>Actions</th>
+                        <th></th>
                         <th>Customer ID</th>
                         <th>Customer Name</th>
                         <th>Customer Class</th>
@@ -127,25 +131,30 @@ export default function CustomerList() {
                             {/* Action Buttons */}
                             <td>
 
-                                <button
-                                    onClick={() =>
-                                        handleEdit(customer)
-                                    }
-                                    className="edit-btn"
-                                >
-                                    <FaEdit />
-                                </button>
+                                <div className="action-buttons">
 
-                                <button
-                                    onClick={() =>
-                                        handleDelete(
-                                            customer.customerId
-                                        )
-                                    }
-                                    className="delete-btn"
-                                >
-                                    <FaTrash />
-                                </button>
+                                    <button
+                                        onClick={() =>
+                                            handleEdit(customer)
+                                        }
+                                        className="edit-btn tooltip"
+                                    >
+                                        <FaEdit />
+                                        <span className="tooltip-text">Edit</span>
+                                    </button>
+
+                                    <button
+                                        onClick={() =>
+                                            handleDelete(
+                                                customer.customerId
+                                            )
+                                        }
+                                        className="delete-btn tooltip"
+                                    >
+                                        <FaTrash />
+                                        <span className="tooltip-text">Delete</span>
+                                    </button>
+                                </div>
 
                             </td>
 

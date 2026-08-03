@@ -1,5 +1,5 @@
 ﻿
-    using ArukuNaati.Server.Models;
+    /*ing ArukuNaati.Server.Models;
     using global::ArukuNaati.Server.Models;
     using System.Net;
     using System.Net.Http.Headers;
@@ -12,11 +12,11 @@
         {
             private readonly HttpClient _httpClient;
 
-            private const string BaseUrl = "http://localhost:80/Acumatica26R1";
+            private const string BaseUrl = "http://localhost:80/Acumatica26R1/";
 
             private const string name = "admin";
             private const string password = "deepika!0512";
-            private const string tenant = "SalesDemo";
+           // private const string tenant = "SalesDemo";
 
             public AcumaticaService()
             {
@@ -78,7 +78,7 @@
             {
                 name = name, // Corrected to use the existing 'name' constant
                 password = password, // Corrected to use the existing 'password' constant
-                tenant = tenant // Corrected to use the existing 'tenant' constant
+                //tenant = tenant // Corrected to use the existing 'tenant' constant
             };
 
             var json = JsonSerializer.Serialize(login);
@@ -102,4 +102,5 @@
                     null);
             }
         }
-    }
+    }*/
+

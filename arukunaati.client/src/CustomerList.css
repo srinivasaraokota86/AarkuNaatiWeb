@@ -14,35 +14,51 @@ h2 {
     color: #333;
 }
 
+
 /* Top Bar */
 
-.top-bar {
+.top-section {
+    margin-bottom: 25px;
+}
+
+.top-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-.top-actions {
-    display: flex;
-    gap: 10px;
+.record-count {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #222;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
 }
 
 /* Add Button */
 
 .add-btn {
-    background-color: #4CAF50;
-    color: white;
+    background: #2e7d32;
+    color: #fff;
     border: none;
-    padding: 10px 18px;
-    border-radius: 5px;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 600;
     cursor: pointer;
-    font-weight: bold;
     transition: 0.3s;
 }
 
     .add-btn:hover {
-        background-color: #388e3c;
+        background: #1b5e20;
     }
 
 /* Table */
@@ -85,39 +101,56 @@ h2 {
 
 /* Buttons */
 
-.edit-btn,
-.delete-btn {
-    border: none;
-    padding: 8px 12px;
-    margin-right: 5px;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    display: inline-flex;
-    align-items: center;
+
+.action-buttons {
+    display: flex;
     justify-content: center;
+    gap: 10px;
 }
 
-/* Edit Button */
+.tooltip {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .edit-btn {
-    background-color: #2e7d32;
+    background: #1976d2;
 }
-
-    .edit-btn:hover {
-        background-color: #1b5e20;
-    }
-
-/* Delete Button */
 
 .delete-btn {
-    background-color: #d32f2f;
+    background: #d32f2f;
 }
 
-    .delete-btn:hover {
-        background-color: #b71c1c;
-    }
+.tooltip-text {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+.tooltip:hover .tooltip-text {
+    opacity: 1;
+    visibility: visible;
+}
+
 
 /* Responsive */
 

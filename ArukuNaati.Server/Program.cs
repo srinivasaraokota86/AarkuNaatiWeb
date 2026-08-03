@@ -28,8 +28,8 @@ builder.Services.AddCors(options =>
 });
 builder.Services.AddScoped<EmailService>();
 
-builder.Services.AddHttpClient();
-builder.Services.AddScoped<AcumaticaService>();
+//ilder.Services.AddHttpClient();
+//ilder.Services.AddScoped<AcumaticaService>();
 
 var app = builder.Build();
 

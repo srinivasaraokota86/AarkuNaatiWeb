@@ -53,7 +53,7 @@ export default function FarmersList() {
 
             try {
 
-                await axios.delete(`https://localhost:7130/api/Farmers/${id}`);
+                await axios.delete(`https://localhost:7130/api/Farmers/register/${id}`);
 
                 alert("Deleted Successfully");
 
@@ -71,12 +71,10 @@ export default function FarmersList() {
     return (
 
         <div className="list-container">
+            <div className="top-section">
+                <div className="top-row">
 
-            <div className="top-bar">
-
-                <h2>Total Farmers: {farmers.length}</h2>
-
-                <div className="top-actions">
+                    <h2 className="record-count">Total Farmers: {farmers.length}</h2>
 
                     <button
                         className="add-btn"
@@ -85,17 +83,20 @@ export default function FarmersList() {
 
                         Add Farmer
                     </button>
+                    </div>
+                    <h1 className="page-title">
+                        Farmers list
+                    </h1>
 
                 </div>
 
-            </div>
 
             <table className="list-table">
 
                 <thead>
 
                     <tr>
-                        <th>Actions</th>
+                        <th></th>
                         <th>ID</th>
                         <th>Farmer Code</th>
                         <th>Name</th>
@@ -124,22 +125,26 @@ export default function FarmersList() {
                         <tr key={farmer.id}>
 
                             <td>
+                                <div className="action-buttons">
 
-                                <button
-                                    onClick={() => handleEdit(farmer)}
-                                    className="edit-btn"
-                                >
-                                    <FaEdit />
-                                </button>
+                                    <button
+                                        onClick={() => handleEdit(farmer)}
+                                        className="edit-btn tooltip"
+                                    >
+                                        <FaEdit />
+                                        <span className="tooltip-text">Edit</span>
+                                    </button>
 
-                                <button
-                                    onClick={() =>
-                                        handleDelete(farmer.id)
-                                    }
-                                    className="delete-btn"
-                                >
-                                    <FaTrash />
-                                </button>
+                                    <button
+                                        onClick={() =>
+                                            handleDelete(farmer.id)
+                                        }
+                                        className="delete-btn tooltip"
+                                    >
+                                        <FaTrash />
+                                        <span className="tooltip-text">Delete</span>
+                                    </button>
+                                </div>
 
                             </td>
                             <td>{farmer.id}</td>
