@@ -35,6 +35,8 @@ namespace ArukuNaati.Server.Data
 
         public DbSet<Village> Villages { get; set; }
         public DbSet<Equipment> Equipment { get; set; }
+        public DbSet<IntegrationSettings> IntegrationSettings { get; set; }
+
     }
 }
 

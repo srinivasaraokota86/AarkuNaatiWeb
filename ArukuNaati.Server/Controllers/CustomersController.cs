@@ -30,8 +30,20 @@ namespace ArukuNaati.Server.Controllers
                 });
 
             // Generate CustomerID
-            customer.CustomerId = "C" + (1000 + _context.Customers.Count() + 1);
+            var lastCustomer = await _context.Customers
+                .Where(c => c.CustomerId.StartsWith("C"))
+                .OrderByDescending(c => c.CustomerId)
+                .FirstOrDefaultAsync();
 
+            int nextNumber = 1001;
+
+            if (lastCustomer != null &&
+                int.TryParse(lastCustomer.CustomerId.Substring(1), out int lastNumber))
+            {
+                nextNumber = lastNumber + 1;
+            }
+
+            customer.CustomerId = $"C{nextNumber}";
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
 

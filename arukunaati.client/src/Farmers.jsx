@@ -252,7 +252,7 @@ async function handleSubmit(e) {
         // UPDATE
         if (editData) {
             const response = await axios.put(
-                'https://localhost:7130/api/Farmers/register/${id}',
+                `https://localhost:7130/api/Farmers/register/${farmer.id}`,
                 FarmerRegistrationDto,
                 {
                     headers: {

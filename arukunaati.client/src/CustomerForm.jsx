@@ -122,9 +122,9 @@ export default function CreateCustomer() {
         });
 
         if (
-            errors.CustomerName ||
-            errors.Phone ||
-            errors.Email
+            errors.customerName ||
+            errors.phone ||
+            errors.email
         ) {
             alert("Please correct validation errors");
             return;
@@ -202,7 +202,8 @@ export default function CreateCustomer() {
                 <h2>Create Customer</h2>
                 <div className="form-grid">
 
-                {/* Customer Name */}
+                    {/* Customer Name */}
+                    <div className="form-group">
                 <input
                     name="customerName"
                     placeholder="Customer Name"
@@ -211,12 +212,12 @@ export default function CreateCustomer() {
                     required
                 />
 
-                {errors.CustomerName && (
+                {errors.customerName && (
                     <small className="error-text">
-                        {errors.CustomerName}
+                        {errors.customerName}
                     </small>
                 )}
-
+                </div>
                 {/* Customer Class */}
                 <input
                     name="customerClass"
@@ -225,7 +226,8 @@ export default function CreateCustomer() {
                     onChange={handleChange}
                 />
 
-                {/* Email */}
+                    {/* Email */}
+                    <div className="form-group">
                 <input
                     name="email"
                     placeholder="Email"
@@ -234,13 +236,14 @@ export default function CreateCustomer() {
                     required
                 />
 
-                {errors.Email && (
+                {errors.email && (
                     <small className="error-text">
-                        {errors.Email}
+                        {errors.email}
                     </small>
                 )}
-
-                {/* Phone */}
+                </div>
+                    {/* Phone */}
+                    <div className="form-group">
                 <input
                     type="text"
                     name="phone"
@@ -254,20 +257,20 @@ export default function CreateCustomer() {
 
                         setCustomer({
                             ...customer,
-                            Phone: value
+                            phone: value
                         });
 
-                        validate("Phone", value);
+                        validate("phone", value);
                     }}
                     required
                 />
 
-                {errors.Phone && (
+                {errors.phone && (
                     <small className="error-text">
-                        {errors.Phone}
+                        {errors.phone}
                     </small>
                 )}
-
+                </div>
                 {/* Address */}
                 <input
                     name="addressLine1"
@@ -287,14 +290,14 @@ export default function CreateCustomer() {
                 {/* Country Dropdown */}
                 <select
                     name="Country"
-                    value={customer.Country}
+                    value={customer.country}
                     onChange={(e) => {
 
                         const selectedCountry = e.target.value;
 
                         setCustomer({
                             ...customer,
-                            Country: selectedCountry,
+                            country: selectedCountry,
                             State: ""
                         });
 
