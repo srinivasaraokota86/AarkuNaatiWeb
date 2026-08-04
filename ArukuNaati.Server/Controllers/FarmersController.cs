@@ -14,14 +14,14 @@ namespace ArukuNaati.Server.Controllers
     public class FarmersController : ControllerBase
     {
 
-         /* private readonly AppDbContext _context;
+          private readonly AppDbContext _context;
 
           public FarmersController(AppDbContext context)
           {
               _context = context;
-          }*/
+          }
 
-        private readonly AppDbContext _context;
+        /*ivate readonly AppDbContext _context;
         private readonly AcumaticaService _acumaticaService;
 
         public FarmersController(
@@ -30,7 +30,7 @@ namespace ArukuNaati.Server.Controllers
         {
             _context = context;
             _acumaticaService = acumaticaService;
-        }
+        }*/
 
         // Fix for CS1061: Correcting the DbSet name to match the property defined in AppDbContext
         /*  [HttpGet]
@@ -68,6 +68,22 @@ namespace ArukuNaati.Server.Controllers
 
                 return new
                 {
+                    /* f.Id,
+                     f.FarmerCode,
+                     f.Name,
+                     f.Mobile,
+                     f.AadharNo,
+                     f.GSTNO,
+                     f.IsActive,
+                     f.CreatedDate,
+                     villageName = village?.VillageName ?? "",
+                     mandalName = mandal?.MandalName ?? "",
+                     districtName = district?.DistrictName ?? "",
+                     stateName = state?.StateName ?? "",
+                     pinCode = address?.PinCode ?? "",
+                     fullAddress = address?.FullAddress ?? ""
+                 };*/
+
                     f.Id,
                     f.FarmerCode,
                     f.Name,
@@ -76,44 +92,26 @@ namespace ArukuNaati.Server.Controllers
                     f.GSTNO,
                     f.IsActive,
                     f.CreatedDate,
+
+                    // IDs (needed for Edit screen dropdowns)
+                    villageId = address?.VillageId,
+                    mandalId = address?.MandalId,
+                    districtId = address?.DistrictId,
+                    stateId = address?.StateId,
+
+                    // Display Names (needed for List screen)
                     villageName = village?.VillageName ?? "",
                     mandalName = mandal?.MandalName ?? "",
                     districtName = district?.DistrictName ?? "",
                     stateName = state?.StateName ?? "",
+
                     pinCode = address?.PinCode ?? "",
                     fullAddress = address?.FullAddress ?? ""
                 };
-            });
+                });
 
             return Ok(result);
         }
-        /*[HttpPost]
-        public async Task<IActionResult> CreateFarmer(Farmers farmer)
-        {
-            // Duplicate Aadhar Check
-            if (await _context.Farmers
-                .AnyAsync(c => c.AadharNo == farmer.AadharNo))
-            {
-                return BadRequest(new
-                {
-                    message = "AadharNumber already exists"
-                });
-            }
-
-            // Generate Unique ID
-            farmer.Id = "C" + DateTime.Now.Ticks
-                .ToString()
-                .Substring(10);
-
-            _context.Farmers.Add(farmer);
-
-            await _context.SaveChangesAsync();
-
-            return Ok(new
-            {
-                message = "Farmer saved successfully"
-            });
-        }*/
 
         [HttpPost("register")]
         public async Task<IActionResult> RegisterFarmer([FromBody]
@@ -165,7 +163,7 @@ namespace ArukuNaati.Server.Controllers
 
                  await _context.SaveChangesAsync();
                 // Create Vendor in Acumatica
-                await _acumaticaService.CreateVendor(dto.Farmer);
+                //ait _acumaticaService.CreateVendor(dto.Farmer);
 
                 return Ok(new
                  {

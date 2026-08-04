@@ -49,20 +49,24 @@ body {
         transition: 0.3s;
     }
 
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.error-text {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
         /* Input Focus */
         .form-box input:focus {
             border-color: #007bff;
             box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.3);
         }
 
-    /* Validation Error */
-    .form-box small {
-        display: block;
-        color: red;
-        margin-top: 4px;
-        margin-bottom: 8px;
-        font-size: 12px;
-    }
 
 /* Mandatory Red Star */
 .required {

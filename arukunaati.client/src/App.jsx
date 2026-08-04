@@ -17,6 +17,9 @@ import Village from "./Village";
 import Mandal from "./Mandal";
 import States from "./States";
 import Districts from "./Districts";
+import IntegrationSettings from "./IntegrationSettings";
+import IntegrationSettingsList from "./IntegrationSettingsList";
+
 
 export default function App() {
     return (
@@ -32,16 +35,6 @@ export default function App() {
                     path="/reset-password"
                     element={<ResetPassword />}
                 />
-
-
-                <Route path="/states-list" element={<StatesList />} />
-                <Route path="/districts-list" element={<DistrictsList />} />
-                <Route path="/mandals" element={<MandalsList />} />
-                <Route path="/villages" element={<VillagesList />} />
-                <Route path="/village" element={<Village />} />
-                <Route path="/mandal" element={<Mandal />} />
-                <Route path="/states" element={<States />} />
-                <Route path="/districts" element={<Districts />} />
 
                 <Route
                     element={
@@ -63,6 +56,17 @@ export default function App() {
                     <Route path="/farmers" element={<FarmersList />} />
                    
                     <Route path="/farmers/create" element={<Farmers />} />
+                    <Route path="/states-list" element={<StatesList />} />
+                    <Route path="/districts-list" element={<DistrictsList />} />
+                    <Route path="/mandals" element={<MandalsList />} />
+                    <Route path="/villages" element={<VillagesList />} />
+                    <Route path="/village" element={<Village />} />
+                    <Route path="/mandal" element={<Mandal />} />
+                    <Route path="/states" element={<States />} />
+                    <Route path="/districts" element={<Districts />} />
+
+                    <Route path="/integrationSettings" element={<IntegrationSettings />} />
+                    <Route path="/integrationSettingsList" element={<IntegrationSettingsList />} />
 
 </Route>
                 </Routes>
