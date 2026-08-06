@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import axios from "axios";
 import "./CustomerList.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
@@ -9,21 +9,22 @@ export default function CustomerList() {
     const [customers, setCustomers] = useState([]);
 
     const navigate = useNavigate();
-
+    const [page, setPage] = useState(1);
+    const [pageSize] = useState(20);
+    const [totalRecords, setTotalRecords] = useState(0);
     // Get Customers
     async function getCustomers() {
 
         try {
 
             const response = await axios.get(
-                "https://localhost:7130/api/customers"
+                `https://localhost:7130/api/customers?page=${page}&pageSize=${pageSize}`
             );
 
-            console.log(response.data);
+            setCustomers(response.data.data);
+            setTotalRecords(response.data.totalRecords);
+            //const [currentPage, setCurrentPage] = useState(1);
 
-            setCustomers(
-                response.data.$values || response.data
-            );
 
         } catch (error) {
 
@@ -37,7 +38,8 @@ export default function CustomerList() {
         // eslint-disable-next-line react-hooks/set-state-in-effect
         getCustomers();
 
-    }, []);
+    // eslint-disable-next-line no-undef
+    }, [page,pageSize]);
     console.log("Customers:", customers);
     // Edit Customer
     function handleEdit(customer) {
@@ -77,11 +79,7 @@ export default function CustomerList() {
             <div className="top-section">
                 <div className="top-row">
 
-
-                    <h2 className="record-count">
-                    Total Customers: {customers.length}
-                </h2>
-
+                    <div className="add-btn-container">
 
                     <button
                         className="add-btn"
@@ -92,10 +90,7 @@ export default function CustomerList() {
                         Add Customer
                     </button>
                     </div>
-                <h1 className="page-title">
-                    Customers list
-                </h1>
-
+                    </div>
 
             </div>
 
@@ -185,6 +180,52 @@ export default function CustomerList() {
                 </tbody>
 
             </table>
+            <div className="pagination-container">
+
+                <div className="record-count">
+                    Records {(page - 1) * pageSize + 1}
+                    -
+                    {Math.min(page * pageSize, totalRecords)}
+                    of {totalRecords}
+                </div>
+
+                <div className="pagination-buttons">
+
+                    <button
+                        onClick={() => setPage(1)}
+                        disabled={page === 1}
+                    >
+                        ⏮ First
+                    </button>
+
+                    <button
+                        onClick={() => setPage(page - 1)}
+                        disabled={page === 1}
+                    >
+                        ◀ Previous
+                    </button>
+
+                    <span className="page-info">
+                        Page {page} of {Math.ceil(totalRecords / pageSize)}
+                    </span>
+
+                    <button
+                        onClick={() => setPage(page + 1)}
+                        disabled={page === Math.ceil(totalRecords / pageSize)}
+                    >
+                        Next ▶
+                    </button>
+
+                    <button
+                        onClick={() => setPage(Math.ceil(totalRecords / pageSize))}
+                        disabled={page === Math.ceil(totalRecords / pageSize)}
+                    >
+                        Last ⏭
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
     );

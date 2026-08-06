@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import axios from "axios";
 import "./ListScreen.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
@@ -8,7 +8,9 @@ export default function FarmersList() {
 
     const [farmers, setFarmers] = useState([]);
     //const [address, setAddress] = useState([]);
-
+    const [page, setPage] = useState(1);
+    const [pageSize] = useState(20);
+    const [totalRecords, setTotalRecords] = useState(0);
     const navigate = useNavigate();
 
     // Get Farmers
@@ -17,12 +19,13 @@ export default function FarmersList() {
         try {
 
             const response = await axios.get(
-                "https://localhost:7130/api/Farmers"
+                `https://localhost:7130/api/Farmers?page=${page}&pageSize=${pageSize}`
             );
 
-            console.log(response.data);
+            setFarmers(response.data.data);
+            setTotalRecords(response.data.totalRecords);
 
-            setFarmers(response.data);
+            console.log(response.data);
 
         } catch (error) {
 
@@ -36,7 +39,8 @@ export default function FarmersList() {
         // eslint-disable-next-line react-hooks/set-state-in-effect
         getFarmers();
 
-    }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [page,pageSize]);
     console.log("Farmers:", farmers);
 
     function handleEdit(farmer) {
@@ -73,20 +77,16 @@ export default function FarmersList() {
         <div className="list-container">
             <div className="top-section">
                 <div className="top-row">
-
-                    <h2 className="record-count">Total Farmers: {farmers.length}</h2>
-
+                    <div className="add-btn-container">
                     <button
                         className="add-btn"
                         onClick={() => navigate("/farmers/create")}
                     >
 
                         Add Farmer
-                    </button>
+                        </button>
+                        </div>
                     </div>
-                    <h1 className="page-title">
-                        Farmers list
-                    </h1>
 
                 </div>
 
@@ -111,6 +111,14 @@ export default function FarmersList() {
                         <th>GST No</th>
                         <th>Pin Code</th>
                         <th>Full Address</th>
+                        <th>Bank</th>
+                        <th>Account No</th>
+                        <th>IFSC</th>
+                        <th>Amount</th>
+                        <th>Payment Method</th>
+                        <th>Reference No</th>
+                        <th>Payment Date</th>
+                        <th>Release</th>
 
 
 
@@ -178,13 +186,79 @@ export default function FarmersList() {
                             <td>{farmer.gstno}</td>
                             <td>{farmer.pinCode}</td>
                             <td>{farmer.fullAddress}</td>
+                            <td>{farmer.bank}</td>
 
+                            <td>{farmer.accountNo}</td>
+
+                            <td>{farmer.ifsc}</td>
+
+                            <td>{farmer.amount}</td>
+
+                            <td>{farmer.paymentMethod}</td>
+
+                            <td>{farmer.referenceNo}</td>
+
+                            <td>
+                                {farmer.paymentDate
+                                    ? new Date(farmer.paymentDate).toLocaleDateString()
+                                    : ""}
+                            </td>
+
+                            <td>{farmer.release ? "Yes" : "No"}</td>
                         </tr>
+
                     ))}
 
                 </tbody>
 
             </table>
+            <div className="pagination-container">
+
+                <div className="record-count">
+                    Records {(page - 1) * pageSize + 1}
+                    -
+                    {Math.min(page * pageSize, totalRecords)}
+                    of {totalRecords}
+                </div>
+
+                <div className="pagination-buttons">
+
+                    <button
+                        onClick={() => setPage(1)}
+                        disabled={page === 1}
+                    >
+                        ⏮ First
+                    </button>
+
+                    <button
+                        onClick={() => setPage(page - 1)}
+                        disabled={page === 1}
+                    >
+                        ◀ Previous
+                    </button>
+
+                    <span className="page-info">
+                        Page {page} of {Math.ceil(totalRecords / pageSize)}
+                    </span>
+
+                    <button
+                        onClick={() => setPage(page + 1)}
+                        disabled={page === Math.ceil(totalRecords / pageSize)}
+                    >
+                        Next ▶
+                    </button>
+
+                    <button
+                        onClick={() => setPage(Math.ceil(totalRecords / pageSize))}
+                        disabled={page === Math.ceil(totalRecords / pageSize)}
+                    >
+                        Last ⏭
+                    </button>
+
+                </div>
+
+            </div>
+
 
         </div>
     );

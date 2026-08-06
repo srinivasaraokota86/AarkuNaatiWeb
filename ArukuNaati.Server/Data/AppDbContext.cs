@@ -37,6 +37,8 @@ namespace ArukuNaati.Server.Data
         public DbSet<Equipment> Equipment { get; set; }
         public DbSet<IntegrationSettings> IntegrationSettings { get; set; }
 
+        public DbSet<FarmerPayment> FarmerPayment { get; set; }
+
     }
 }
 
