@@ -42,20 +42,13 @@ h2 {
     margin-bottom: 15px;
 }
 
-.record-count {
-    margin: 0;
-    font-size: 22px;
-    font-weight: 700;
-    color: #222;
+
+.add-btn-container {
+    display: flex;
+    justify-content: flex-end;
+   width: 100%;
 }
 
-.page-title {
-    text-align: center;
-    font-size: 42px;
-    font-weight: 700;
-    color: #222;
-    margin: 0;
-}
 
 .add-btn {
     background: #2e7d32;
@@ -189,3 +182,56 @@ h2 {
         .menu-vertical a:hover {
             background: #e3f2fd;
         }
+
+.pagination-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+}
+
+.record-count {
+    font-size: 15px;
+    color: #444;
+    font-weight: 500;
+}
+
+.pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    .pagination-buttons button {
+        padding: 8px 16px;
+        border: 1px solid #2e7d32;
+        background-color: #2e7d32;
+        color: #ffffff;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: .2s;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+        .pagination-buttons button:hover:not(:disabled) {
+            background: #1b5e20;
+            color: white;
+        }
+
+        .pagination-buttons button:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+            border-color: #d6d6d6;
+            color: #888888;
+            background-color: #256c2a;
+            transform: translateY(-1px);
+        }
+
+.page-info {
+    font-weight: 600;
+    color: #333;
+
+}

@@ -1,5 +1,4 @@
 ﻿import { useState } from "react";
-import "./CustomerForm.css";
 import "./Farmers.css";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -55,6 +54,18 @@ export default function Farmers() {
             fullAddress: editData?.fullAddress || ""
     });
 
+
+
+    const [payment, setPayment] = useState({
+        bank: editData ?.bank || "",
+        accountNo: editData ?.accountNo || "",
+        ifsc: editData ?.ifsc || "",
+        amount: editData?.amount || "",
+        paymentMethod: editData?.paymentMethod || "",
+        referenceNo: editData?.referenceNo || "",
+        paymentDate: editData?.paymentDate || "",
+        release: editData?.release || ""
+    });
    /* const [land, setLand] = useState({
         farmerId: farmer.id || "",
         totalAcres: "",
@@ -246,6 +257,18 @@ async function handleSubmit(e) {
         Address: updatedAddress,
         //Land: updatedLand,
         // Crop: null // or updatedCrop if you have crop info
+
+        Payment: {
+            Bank: payment.bank,
+            AccountNo: payment.accountNo,
+            IFSC: payment.ifsc,
+            Amount: Number(payment.amount),
+            PaymentMethod: payment.paymentMethod,
+            ReferenceNo: payment.referenceNo,
+            PaymentDate: payment.paymentDate,
+            Release: payment.release
+        }
+
     };
 
     try {
@@ -329,6 +352,16 @@ async function handleSubmit(e) {
         fullAddress: ""
     });
 
+    setPayment({
+        bank: "",
+        accountNo: "",
+        ifsc: "",
+        amount: "",
+        paymentMethod: "Bank",
+        referenceNo: "",
+        paymentDate: "",
+        release: ""
+    });
     /* setLand({
          totalAcres: "",
          ownershipType: "",
@@ -630,8 +663,116 @@ async function handleSubmit(e) {
                             })
                         }
                     />
-                    </div>
+                     </div>
 
+                     <h3 className="section-title">
+                         Farmer Payment Information
+                     </h3>
+
+                     <div className="form-grid">
+
+                         <input
+                             placeholder="Bank"
+                             value={payment.bank}
+                             onChange={(e) =>
+                                 setPayment({
+                                     ...payment,
+                                     bank: e.target.value
+                                 })
+                             }
+                             required
+                         />
+
+                         <input
+                             placeholder="Account Number"
+                             value={payment.accountNo}
+                             onChange={(e) =>
+                                 setPayment({
+                                     ...payment,
+                                     accountNo: e.target.value
+                                 })
+                             }
+                             required
+                         />
+
+                         <input
+                             placeholder="IFSC Code"
+                             value={payment.ifsc}
+                             onChange={(e) =>
+                                 setPayment({
+                                     ...payment,
+                                     ifsc: e.target.value.toUpperCase()
+                                 })
+                             }
+                             required
+                         />
+
+                         <input
+                             type="number"
+                             placeholder="Amount"
+                             value={payment.amount}
+                             onChange={(e) =>
+                                 setPayment({
+                                     ...payment,
+                                     amount: e.target.value
+                                 })
+                             }
+                             required
+                         />
+
+                         <select
+                             value={payment.paymentMethod}
+                             onChange={(e) =>
+                                 setPayment({
+                                     ...payment,
+                                     paymentMethod: e.target.value
+                                 })
+                             }
+                         >
+                             <option value="Bank">Bank</option>
+                             <option value="UPI">UPI</option>
+                             <option value="Cash">Cash</option>
+                         </select>
+
+                         <input
+                             placeholder="Reference Number"
+                             value={payment.referenceNo}
+                             onChange={(e) =>
+                                 setPayment({
+                                     ...payment,
+                                     referenceNo: e.target.value
+                                 })
+                             }
+                         />
+
+                         <input
+                             type="date"
+                             value={payment.paymentDate}
+                             onChange={(e) =>
+                                 setPayment({
+                                     ...payment,
+                                     paymentDate: e.target.value
+                                 })
+                             }
+                             required
+                         />
+
+                         <div className="form-group checkbox-container">
+                             <label className="checkbox-label">
+                                 <input
+                                     type="checkbox"
+                                     checked={payment.release}
+                                     onChange={(e) =>
+                                         setPayment({
+                                             ...payment,
+                                             release: e.target.checked,
+                                         })
+                                     }
+                                 />
+                                 <span>Release Payment</span>
+                             </label>
+                         </div>
+                     </div>
 
                     <button type="submit">
                         {editData ? "Update Farmer" : "Save Farmer"}
