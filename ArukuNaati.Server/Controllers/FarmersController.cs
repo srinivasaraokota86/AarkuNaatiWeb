@@ -14,14 +14,15 @@ namespace ArukuNaati.Server.Controllers
     public class FarmersController : ControllerBase
     {
 
-          private readonly AppDbContext _context;
+         /* private readonly AppDbContext _context;
 
           public FarmersController(AppDbContext context)
           {
               _context = context;
           }
+         */
 
-        /*ivate readonly AppDbContext _context;
+        private readonly AppDbContext _context;
         private readonly AcumaticaService _acumaticaService;
 
         public FarmersController(
@@ -30,7 +31,7 @@ namespace ArukuNaati.Server.Controllers
         {
             _context = context;
             _acumaticaService = acumaticaService;
-        }*/
+        }
 
         // Fix for CS1061: Correcting the DbSet name to match the property defined in AppDbContext
         /*  [HttpGet]
@@ -139,7 +140,15 @@ namespace ArukuNaati.Server.Controllers
                         message = "Aadhaar already exists"
                     });
                 }
-
+                //Duplicate Farmer id chack
+                if (await _context.Farmers
+    .AnyAsync(x => x.FarmerCode == dto.Farmer.FarmerCode))
+                {
+                    return BadRequest(new
+                    {
+                        message = "Farmer Code already exists"
+                    });
+                }
                 // Generate Farmer Id
                 dto.Farmer.Id =
                     "F" + DateTime.Now.Ticks
@@ -179,7 +188,7 @@ namespace ArukuNaati.Server.Controllers
 
                 await _context.SaveChangesAsync();
                 // Create Vendor in Acumatica
-                //ait _acumaticaService.CreateVendor(dto.Farmer);
+                await _acumaticaService.CreateVendor(dto.Farmer);
 
                 return Ok(new
                  {
@@ -205,8 +214,95 @@ namespace ArukuNaati.Server.Controllers
                 });
             }
         }
+        [HttpPost("acumatica-vendor")]
+        public async Task<IActionResult> CreateFarmerFromVendor(
+    [FromBody] AcumaticaVendorDto dto)
+        {
+            try
+            {
+                // Get actual values from Acumatica
+                string? vendorId = dto.VendorID?.Value;
+                string? vendorName = dto.VendorName?.Value;
 
+                // Vendor ID is required
+                if (string.IsNullOrWhiteSpace(vendorId))
+                {
+                    return BadRequest(new
+                    {
+                        message = "Vendor ID is required"
+                    });
+                }
 
+                // Check duplicate Vendor/Farmer Code
+                bool alreadyExists = await _context.Farmers
+                    .AnyAsync(x => x.FarmerCode == vendorId);
+
+                if (alreadyExists)
+                {
+                    return Ok(new
+                    {
+                        message = "Vendor already exists in ArukuNaati",
+                        farmerCode = vendorId
+                    });
+                }
+
+                // Generate Farmer ID
+                var farmer = new Farmers
+                {
+                    Id = "F" + DateTime.Now.Ticks
+                        .ToString()
+                        .Substring(10),
+
+                    FarmerCode = vendorId,
+
+                    Name = vendorName ?? "",
+
+                    // Acumatica Vendor does not provide these fields
+                    Mobile = "",
+                    AadharNo = "",
+                    GSTNO = "",
+
+                    CreatedDate = DateTime.Now
+                };
+
+                _context.Farmers.Add(farmer);
+
+                await _context.SaveChangesAsync();
+
+                return Ok(new
+                {
+                    message = "Acumatica Vendor created as Farmer successfully",
+                    farmerId = farmer.Id,
+                    farmerCode = farmer.FarmerCode,
+                    farmerName = farmer.Name
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    message = ex.Message,
+                    innerException = ex.InnerException?.Message
+                });
+            }
+        }
+        [HttpGet("acumatica-vendors")]
+        public async Task<IActionResult> GetAcumaticaVendors()
+        {
+            try
+            {
+                var vendors = await _acumaticaService.GetVendors();
+
+                return Ok(vendors);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    message = ex.InnerException?.Message ?? ex.Message
+                });
+            }
+        }
         /* [HttpPut("{id}")]
          public async Task<IActionResult> PutFarmer(
      string id,
