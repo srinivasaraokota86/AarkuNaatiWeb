@@ -144,7 +144,7 @@ export default function Farmers() {
     //const [message, setMessage] = useState("");
 
     // Validation Function
-    const validate = (name, value) => {
+    /*const validate = (name, value) => {
 
         let error = "";
 
@@ -190,7 +190,44 @@ export default function Farmers() {
                 ...prev,
                 [name]: error
             }));
-        };
+        };*/
+    const validate = (name, value) => {
+
+        let error = "";
+
+        // Aadhaar Validation
+        if (name === "aadharNo") {
+            const AadharNoPattern = /^[0-9]{12}$/;
+
+            if (value.trim() && !AadharNoPattern.test(value)) {
+                error = "Aadhar Number must be 12 digits";
+            }
+        }
+
+        // Mobile Validation
+        if (name === "mobile") {
+            const mobilePattern = /^[0-9]{10}$/;
+
+            if (value.trim() && !mobilePattern.test(value)) {
+                error = "Enter valid 10 digit mobile number";
+            }
+        }
+
+        // GST Validation
+        if (name === "gstno") {
+            const GSTNoPattern =
+                /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[A-Z0-9]{1}Z[A-Z0-9]{1}$/;
+
+            if (value.trim() && !GSTNoPattern.test(value)) {
+                error = "Invalid GST Number";
+            }
+        }
+
+        setErrors((prev) => ({
+            ...prev,
+            [name]: error
+        }));
+    };
 
     /*function getLocation() {
 
@@ -443,7 +480,6 @@ async function handleSubmit(e) {
 
                                 validate("mobile", value);
                             }}
-                            required
                         />
 
                     </div>
@@ -478,7 +514,6 @@ async function handleSubmit(e) {
                             validate("aadharNo", onlyNumbers);
                         }}
 
-                        required
                     />
                     {errors.aadharNo && (
                         <small style={{ color: "red" }}>
@@ -504,7 +539,6 @@ async function handleSubmit(e) {
                                 }
                             });
                         }}
-                        required
                     />
                     {errors.gstno && (
                         <small style={{ color: "red" }}>
