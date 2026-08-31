@@ -1,155 +1,332 @@
-/* Page Container */
+/* =========================================================
+   CUSTOMER LIST - MAIN CONTAINER
+========================================================= */
 
 .list-container {
-    padding: 20px;
-    background: #f5f6fa;
-    min-height: 100vh;
+    width: 100%;
+    height: 100vh;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background: #f5f7f9;
+    box-sizing: border-box;
+    padding: 0;
+    overflow: hidden;
 }
 
-/* Heading */
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-
-/* Top Bar */
+/* =========================================================
+   TOP SECTION
+========================================================= */
 
 .top-section {
-    margin-bottom: 25px;
+    width: 100%;
+    min-height: 94px;
+    background: #ffffff;
+    padding: 16px 24px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #d8dee5;
 }
+
+
+/* =========================================================
+   TOP ROW
+========================================================= */
 
 .top-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.record-count {
-    margin: 0;
-    font-size: 22px;
-    font-weight: 700;
-    color: #222;
-}
-
-.page-title {
-    text-align: center;
-    font-size: 42px;
-    font-weight: 700;
-    color: #222;
-    margin: 0;
-}
-
-/* Add Button */
-.add-btn-container {
-    display: flex;
-    justify-content: flex-end;
     width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    /* IMPORTANT - MOVE BUTTON TO RIGHT */
+    justify-content: flex-end;
+    box-sizing: border-box;
 }
+
+
+/* =========================================================
+   ADD BUTTON CONTAINER
+========================================================= */
+
+.add-btn-container {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   ADD CUSTOMER BUTTON
+========================================================= */
 
 .add-btn {
-    background: #2e7d32;
-    color: #fff;
+    height: 45px;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 20px;
     border: none;
-    padding: 12px 28px;
-    border-radius: 8px;
-    font-size: 17px;
+    border-radius: 9px;
+    background: #2e7d32;
+    color: #ffffff;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
+    box-sizing: border-box;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
+
+
+    /* =========================================================
+   PLUS ICON
+========================================================= */
+
+    .add-btn svg {
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+
+
+    /* =========================================================
+   HOVER
+========================================================= */
 
     .add-btn:hover {
-        background: #1b5e20;
+        background: #256b2a;
     }
 
-/* Table */
 
-.list-table {
+    /* =========================================================
+   ACTIVE
+========================================================= */
+
+    .add-btn:active {
+        transform: scale(0.98);
+    }
+
+/* =========================================================
+   TABLE CONTAINER
+========================================================= */
+
+.table-container {
+    flex: 1 1 0%;
+    min-height: 0;
+    min-width: 0;
     width: 100%;
-    border-collapse: collapse;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
 }
 
-    /* Table Header */
+
+/* =========================================================
+   TABLE SCROLL CONTAINER
+========================================================= */
+
+.table-scroll-container {
+    flex: 1 1 0%;
+    min-height: 0;
+    min-width: 0;
+    width: 100%;
+    overflow: auto;
+    background: #ffffff;
+    position: relative;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.list-table {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    background: #ffffff;
+}
+
+
+    /* =========================================================
+   TABLE HEADER
+========================================================= */
 
     .list-table th {
-        background-color: #1976d2;
-        color: white;
-        padding: 12px;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        height: 42px;
+        padding: 0 12px;
+        background: #2e7d32;
+        color: #ffffff;
+        border-right: 1px solid rgba(255, 255, 255, 0.25);
+        border-bottom: 1px solid #1b5e20;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
         text-align: left;
+        box-sizing: border-box;
     }
 
-    /* Table Cells */
+
+    /* =========================================================
+   TABLE BODY
+========================================================= */
 
     .list-table td {
-        padding: 12px;
-        border-top: 1px solid #ddd;
-        vertical-align: middle;
+        height: 42px;
+        padding: 0 12px;
+        border-right: 1px solid #e1e5e8;
+        border-bottom: 1px solid #e1e5e8;
+        background: #ffffff;
+        color: #374151;
+        font-size: 13px;
+        white-space: nowrap;
+        box-sizing: border-box;
     }
 
-    /* Alternate Rows */
 
-    .list-table tr:nth-child(even) {
-        background-color: #f9f9f9;
+    /* =========================================================
+   TABLE ROW HOVER
+========================================================= */
+
+    .list-table tbody tr:hover td {
+        background: #f4f8f4;
     }
 
-    /* Hover Effect */
 
-    .list-table tr:hover {
-        background-color: #e3f2fd;
-    }
+/* =========================================================
+   ACTIONS HEADER
+========================================================= */
 
-/* Buttons */
+.actions-header {
+    width: 100px;
+    min-width: 100px;
+    text-align: center !important;
+}
 
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
 
 .action-buttons {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 13px;
 }
+
+
+/* =========================================================
+   EDIT BUTTON
+========================================================= */
+
+.edit-btn {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #1976d2;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+    .edit-btn:hover {
+        color: #0d47a1;
+    }
+
+
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
+
+.delete-btn {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #d32f2f;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+    .delete-btn:hover {
+        color: #b71c1c;
+    }
+
+
+/* =========================================================
+   ACTION TOOLTIP
+========================================================= */
 
 .tooltip {
     position: relative;
-    width: 42px;
-    height: 42px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.edit-btn {
-    background: #1976d2;
-}
 
-.delete-btn {
-    background: #d32f2f;
-}
+/* =========================================================
+   ACTION TOOLTIP TEXT
+========================================================= */
 
 .tooltip-text {
     position: absolute;
-    bottom: 120%;
+    bottom: calc(100% + 8px);
     left: 50%;
     transform: translateX(-50%);
-    background: #333;
-    color: white;
-    padding: 5px 10px;
+    padding: 5px 8px;
+    background: #263238;
+    color: #ffffff;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 11px;
+    font-weight: 500;
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: 0.3s;
-    z-index: 100;
+    pointer-events: none;
+    z-index: 99999;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
 }
+
+
+    /* =========================================================
+   ACTION TOOLTIP ARROW
+========================================================= */
+
+    .tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #263238;
+    }
+
+
+/* =========================================================
+   SHOW ACTION TOOLTIP
+========================================================= */
 
 .tooltip:hover .tooltip-text {
     opacity: 1;
@@ -157,68 +334,855 @@ h2 {
 }
 
 
-/* Responsive */
+/* =========================================================
+   FILTER HEADER
+========================================================= */
 
-@media screen and (max-width: 768px) {
-
-    .top-bar {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .list-table {
-        display: block;
-        overflow-x: auto;
-    }
+.filter-column-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
 }
-.pagination-container {
-    margin-top: 20px;
+
+
+/* =========================================================
+   FILTER HEADER CONTENT
+========================================================= */
+
+.filter-header-content {
+    width: 100%;
+    min-height: 42px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    background: #fff;
-    border-top: 1px solid #ddd;
+    justify-content: space-between;
+    gap: 10px;
+    box-sizing: border-box;
 }
 
-.record-count {
-    font-size: 15px;
-    color: #444;
-    font-weight: 500;
+
+    /* =========================================================
+   HEADER TEXT
+========================================================= */
+
+    .filter-header-content > span {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+
+/* =========================================================
+   FILTER TOOLTIP WRAPPER
+========================================================= */
+
+.filter-tooltip-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    z-index: 100;
 }
+
+
+/* =========================================================
+   FILTER ICON BUTTON
+========================================================= */
+
+.filter-icon-button {
+    position: relative;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 3px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.90);
+    cursor: pointer;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+
+    /* =========================================================
+   FILTER ICON
+========================================================= */
+
+    .filter-icon-button svg {
+        font-size: 15px;
+        pointer-events: none;
+    }
+
+
+    /* =========================================================
+   FILTER HOVER
+========================================================= */
+
+    .filter-icon-button:hover {
+        background: rgba(255, 255, 255, 0.20);
+        color: #ffffff;
+    }
+
+
+/* =========================================================
+   FILTER ACTIVE
+========================================================= */
+
+.filter-icon-active {
+    background: #ffffff;
+    color: #2e7d32;
+}
+
+
+    /* =========================================================
+   FILTER ACTIVE HOVER
+========================================================= */
+
+    .filter-icon-active:hover {
+        background: #ffffff;
+        color: #1b5e20;
+    }
+
+
+/* =========================================================
+   FILTER TOOLTIP
+========================================================= */
+
+.filter-tooltip-text {
+    position: absolute;
+    bottom: calc(100% + 9px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 9px;
+    background: #263238;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 99999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+
+
+    /* =========================================================
+   FILTER TOOLTIP ARROW
+========================================================= */
+
+    .filter-tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #263238;
+    }
+
+
+/* =========================================================
+   SHOW FILTER TOOLTIP
+========================================================= */
+
+.filter-tooltip-wrapper:hover .filter-tooltip-text {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================================
+   ACUMATICA FILTER POPUP
+========================================================= */
+
+.acumatica-filter-popup {
+    position: absolute;
+    top: 43px;
+    left: 0;
+    width: 280px;
+    /*
+       IMPORTANT:
+       Fixed popup height so the footer is always visible.
+    */
+
+    height: 380px;
+    max-height: 380px;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #cfd6dc;
+    border-radius: 3px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+    z-index: 99999;
+    color: #263238;
+    font-weight: normal;
+    white-space: normal;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   POPUP HEADER
+========================================================= */
+
+.filter-popup-header {
+    height: 42px;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px 0 14px;
+    box-sizing: border-box;
+    background: #f4f6f8;
+    border-bottom: 1px solid #dce1e5;
+    color: #263238;
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   POPUP CLOSE BUTTON
+========================================================= */
+
+.filter-popup-close {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #666666;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+    .filter-popup-close:hover {
+        background: #e5e7eb;
+        color: #222222;
+    }
+
+
+/* =========================================================
+   FILTER SEARCH
+========================================================= */
+
+.filter-search-container {
+    height: 47px;
+    min-height: 47px;
+    padding: 9px 12px 6px;
+    background: #ffffff;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+
+    /* =========================================================
+   FILTER SEARCH INPUT
+========================================================= */
+
+    .filter-search-container input {
+        width: 100%;
+        height: 32px;
+        padding: 0 9px;
+        box-sizing: border-box;
+        border: 1px solid #9ca3af;
+        border-radius: 4px;
+        outline: none;
+        background: #ffffff;
+        color: #374151;
+        font-size: 13px;
+    }
+
+
+        /* =========================================================
+   SEARCH INPUT FOCUS
+========================================================= */
+
+        .filter-search-container input:focus {
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 1px rgba(46, 125, 50, 0.18);
+        }
+
+
+        /* =========================================================
+   SEARCH PLACEHOLDER
+========================================================= */
+
+        .filter-search-container input::placeholder {
+            color: #8a8f94;
+        }
+
+
+/* =========================================================
+   SELECT ALL / CLEAR
+========================================================= */
+
+.filter-select-actions {
+    height: 42px;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 14px 8px;
+    background: #ffffff;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+
+    /* =========================================================
+   SELECT ALL / CLEAR TOP BUTTONS
+========================================================= */
+
+    .filter-select-actions button {
+        border: none;
+        background: transparent;
+        color: #1976d2;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 3px 0;
+    }
+
+
+        /* =========================================================
+   SELECT ALL / CLEAR HOVER
+========================================================= */
+
+        .filter-select-actions button:hover {
+            text-decoration: underline;
+        }
+
+
+/* =========================================================
+   FILTER VALUES LIST
+========================================================= */
+
+.filter-values-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-top: 1px solid #eceff1;
+    border-bottom: 1px solid #e1e5e8;
+    background: #ffffff;
+    padding: 4px 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FILTER VALUE ROW
+========================================================= */
+
+.filter-value-row {
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    color: #555555;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+}
+
+
+    /* =========================================================
+   FILTER VALUE ROW HOVER
+========================================================= */
+
+    .filter-value-row:hover {
+        background: #f4f8f4;
+    }
+
+
+    /* =========================================================
+   FILTER CHECKBOX
+========================================================= */
+
+    .filter-value-row input {
+        width: 17px;
+        height: 17px;
+        margin: 0;
+        cursor: pointer;
+        accent-color: #2e7d32;
+        flex-shrink: 0;
+    }
+
+
+    /* =========================================================
+   FILTER VALUE TEXT
+========================================================= */
+
+    .filter-value-row span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #374151;
+    }
+
+
+/* =========================================================
+   NO FILTER VALUES
+========================================================= */
+
+.no-filter-values {
+    padding: 20px 12px;
+    text-align: center;
+    color: #777777;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FILTER POPUP FOOTER
+========================================================= */
+
+.filter-popup-footer {
+    height: 58px;
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    background: #fafbfc;
+    border-top: 1px solid #dfe3e6;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+}
+
+
+/* =========================================================
+   FILTER FOOTER BUTTONS
+========================================================= */
+
+.filter-bottom-clear,
+.filter-bottom-apply {
+    height: 36px;
+    min-width: 105px;
+    padding: 0 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   CLEAR BUTTON
+========================================================= */
+
+.filter-bottom-clear {
+    border: 1px solid #c7cdd2;
+    background: #ffffff;
+    color: #444444;
+}
+
+
+    /* =========================================================
+   CLEAR HOVER
+========================================================= */
+
+    .filter-bottom-clear:hover {
+        background: #f1f3f5;
+    }
+
+
+/* =========================================================
+   APPLY BUTTON
+========================================================= */
+
+.filter-bottom-apply {
+    border: 1px solid #2e7d32;
+    background: #2e7d32;
+    color: #ffffff;
+}
+
+
+    /* =========================================================
+   APPLY HOVER
+========================================================= */
+
+    .filter-bottom-apply:hover {
+        background: #256628;
+    }
+
+
+/* =========================================================
+   NO DATA
+========================================================= */
+
+.no-data-row {
+    text-align: center !important;
+    padding: 35px !important;
+    color: #6b7280 !important;
+    font-size: 14px !important;
+    background: #ffffff !important;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.pagination-container {
+    min-height: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background: #ffffff;
+    border-top: 1px solid #d8dee5;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 100;
+}
+
+
+/* =========================================================
+   RECORD INFO
+========================================================= */
+
+.record-info {
+    font-size: 13px;
+    color: #4b5563;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   PAGINATION BUTTONS
+========================================================= */
 
 .pagination-buttons {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
-    .pagination-buttons button {
-        padding: 8px 16px;
-        border: 1px solid #2e7d32;
-        background-color: #2e7d32;
-        color: #ffffff;
-        cursor: pointer;
-        border-radius: 8px;
-        transition: .2s;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+/* =========================================================
+   PAGINATION TOOLTIP WRAPPER
+========================================================= */
+
+.pagination-tooltip {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   PAGINATION ICON
+========================================================= */
+
+.pagination-icon {
+    position: relative;
+    width: 38px;
+    min-width: 38px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid #cbd2d8;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #4b5563;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+
+    /* =========================================================
+   PAGINATION SVG
+========================================================= */
+
+    .pagination-icon svg {
+        font-size: 14px;
     }
 
-        .pagination-buttons button:hover:not(:disabled) {
-            background: #1b5e20;
-            color: white;
-        }
 
-        .pagination-buttons button:disabled {
-            opacity: .5;
-            cursor: not-allowed;
-            border-color: #d6d6d6;
-            color: #888888;
-            background-color: #256c2a;
-            transform: translateY(-1px);
-        }
+    /* =========================================================
+   PAGINATION HOVER
+========================================================= */
+
+    .pagination-icon:hover:not(:disabled) {
+        background: #f1f5f9;
+        border-color: #9ca7b0;
+        color: #1976d2;
+    }
+
+
+    /* =========================================================
+   PAGINATION DISABLED
+========================================================= */
+
+    .pagination-icon:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+    }
+
+
+/* =========================================================
+   PAGINATION TOOLTIP TEXT
+========================================================= */
+
+.pagination-tooltip-text {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 8px;
+    background: #263238;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 99999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+
+
+    /* =========================================================
+   PAGINATION TOOLTIP ARROW
+========================================================= */
+
+    .pagination-tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #263238;
+    }
+
+
+/* =========================================================
+   SHOW PAGINATION TOOLTIP
+========================================================= */
+
+.pagination-tooltip:hover .pagination-tooltip-text {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================================
+   PAGE INFORMATION
+========================================================= */
 
 .page-info {
-    font-weight: 600;
-    color: #333;
+    min-width: 75px;
+    text-align: center;
+    font-size: 12px;
+    color: #4b5563;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLE SCROLLBARS
+========================================================= */
+
+.table-scroll-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+
+/* =========================================================
+   FILTER SCROLLBAR
+========================================================= */
+
+.filter-values-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+/* =========================================================
+   SCROLLBAR THUMB
+========================================================= */
+
+.table-scroll-container::-webkit-scrollbar-thumb,
+.filter-values-list::-webkit-scrollbar-thumb {
+    background: #aeb7bf;
+    border-radius: 5px;
+}
+
+
+    /* =========================================================
+   SCROLLBAR THUMB HOVER
+========================================================= */
+
+    .table-scroll-container::-webkit-scrollbar-thumb:hover,
+    .filter-values-list::-webkit-scrollbar-thumb:hover {
+        background: #89939c;
+    }
+
+
+/* =========================================================
+   SCROLLBAR TRACK
+========================================================= */
+
+.table-scroll-container::-webkit-scrollbar-track,
+.filter-values-list::-webkit-scrollbar-track {
+    background: #f1f3f4;
+}
+
+
+/* =========================================================
+   HORIZONTAL SCROLLBAR
+========================================================= */
+
+.table-scroll-container::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .top-section {
+        height: auto;
+        min-height: 70px;
+        padding: 12px;
+    }
+
+
+    .top-row {
+        justify-content: flex-start;
+    }
+
+
+    .add-btn-container {
+        width: 100%;
+    }
+
+
+    .add-btn {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    .pagination-container {
+        padding: 0 10px;
+    }
+
+
+    .record-info {
+        font-size: 12px;
+    }
+
+
+    .pagination-buttons {
+        gap: 3px;
+    }
+
+
+    .pagination-icon {
+        width: 34px;
+        min-width: 34px;
+    }
+
+
+    .page-info {
+        min-width: 65px;
+        font-size: 11px;
+    }
+
+
+    .acumatica-filter-popup {
+        width: 280px;
+        max-width: calc(100vw - 20px);
+    }
+}
+
+/* =========================================================
+   ACTIVE FILTER BAR
+========================================================= */
+
+.active-filter-bar {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 16px;
+    background: #eef6ee;
+    border-bottom: 1px solid #cfe3cf;
+    box-sizing: border-box;
+    font-size: 13px;
+    color: #2e5d31;
+}
+
+    .active-filter-bar span {
+        font-weight: 600;
+    }
+
+    .active-filter-bar button {
+        border: none;
+        background: transparent;
+        color: #c62828;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+/* =========================================================
+   SMALL SCREEN FILTER POPUP
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .acumatica-filter-popup {
+        width: 260px;
+        max-width: calc(100vw - 20px);
+        height: 360px;
+        max-height: 360px;
+    }
+
+
+    .filter-bottom-clear,
+    .filter-bottom-apply {
+        min-width: 95px;
+    }
 }

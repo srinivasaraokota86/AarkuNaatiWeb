@@ -1,237 +1,993 @@
-.list-table td {
-    vertical-align: middle;
-}
-
-.edit-btn,
-.delete-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-
-    .list-table tr:nth-child(even) {
-        background-color: #f5f5f5;
-    }
-
-    .list-table tr:hover {
-        background-color: #e3f2fd;
-    }
-
+/* =========================================================
+   LIST CONTAINER
+========================================================= */
 
 .list-container {
-    padding: 20px;
-    background: #f5f6fa;
-    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #f5f7f9;
+    box-sizing: border-box;
 }
 
-/* Top Bar */
 
-.top-section {
-    margin-bottom: 25px;
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.top-bar {
+    width: 100%;
+    flex-shrink: 0;
+    background: #ffffff;
+    border-bottom: 1px solid #d8dee5;
+    padding: 12px 18px;
+    box-sizing: border-box;
 }
+
+
+/* =========================================================
+   TOP ROW
+========================================================= */
 
 .top-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-
-.add-btn-container {
-    display: flex;
-    justify-content: flex-end;
-   width: 100%;
-}
-
-
-.add-btn {
-    background: #2e7d32;
-    color: #fff;
-    border: none;
-    padding: 12px 28px;
-    border-radius: 8px;
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-    .add-btn:hover {
-        background: #1b5e20;
-    }
-
-/* Search */
-
-.search-box {
-    padding: 10px;
-    width: 250px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-
-/* Table */
-
-.list-table {
     width: 100%;
-    border-collapse: collapse;
-    background: white;
+    min-height: 52px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    box-sizing: border-box;
 }
 
-    .list-table th {
-        background: #f1f2f6;
-        padding: 12px;
-        text-align: left;
-    }
+/* =========================================================
+   PAGE TITLE
+========================================================= */
 
-    .list-table td {
-        padding: 12px;
-        border-top: 1px solid #ddd;
-    }
-
-/* Buttons */
-
-.action-buttons {
+.page-title-area {
     display: flex;
-    justify-content: center;
+    align-items: center;
+}
+
+    .page-title-area h2 {
+        margin: 0;
+        font-size: 21px;
+        font-weight: 600;
+        color: #1f2937;
+    }
+
+
+/* =========================================================
+   TOP ACTIONS
+========================================================= */
+
+.top-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     gap: 10px;
 }
 
-.tooltip {
-    position: relative;
-    width: 42px;
+
+/* =========================================================
+   ADD FARMER BUTTON
+========================================================= */
+
+.add-btn {
     height: 42px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    color: white;
-    display: flex;
-    justify-content: center;
+    min-width: 165px;
+    padding: 0 18px;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 7px;
+    background: #2e7d32;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+    .add-btn svg {
+        font-size: 16px;
+    }
+
+    .add-btn:hover {
+        background: #256b2a;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .add-btn:active {
+        transform: scale(0.98);
+    }
+
+.add-btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+/* =========================================================
+   CLEAR ALL FILTERS BUTTON
+========================================================= */
+
+.clear-all-btn {
+    height: 42px;
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dc2626;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #dc2626;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .clear-all-btn:hover {
+        background: #dc2626;
+        color: #ffffff;
+        box-shadow: 0 3px 8px rgba(220, 38, 38, 0.2);
+    }
+
+
+/* =========================================================
+   TABLE CONTAINER
+========================================================= */
+
+.table-container {
+    flex: 1;
+    min-height: 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   TABLE SCROLL CONTAINER
+========================================================= */
+
+.table-scroll-container {
+    flex: 1;
+    min-height: 0;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: auto;
+    position: relative;
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.list-table {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: auto;
+    background: #ffffff;
+}
+
+
+    /* =========================================================
+   TABLE HEADER
+========================================================= */
+
+    .list-table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        height: 48px;
+        padding: 0 12px;
+        background: #2e7d32;
+        color: #ffffff;
+        border-right: 1px solid #4c914f;
+        border-bottom: 1px solid #236527;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: left;
+        white-space: nowrap;
+        box-sizing: border-box;
+    }
+
+
+        /* =========================================================
+   ACTIONS HEADER
+========================================================= */
+
+        .list-table thead th.actions-header {
+            min-width: 105px;
+            text-align: center;
+        }
+
+
+    /* =========================================================
+   TABLE BODY
+========================================================= */
+
+    .list-table tbody td {
+        height: 43px;
+        padding: 8px 12px;
+        border-right: 1px solid #e1e5e9;
+        border-bottom: 1px solid #e1e5e9;
+        background: #ffffff;
+        color: #374151;
+        font-size: 14px;
+        white-space: nowrap;
+        box-sizing: border-box;
+    }
+
+
+    /* =========================================================
+   ROW HOVER
+========================================================= */
+
+    .list-table tbody tr:hover td {
+        background: #f5f9f5;
+    }
+
+
+/* =========================================================
+   FILTER HEADER
+========================================================= */
+
+.filter-column-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 30 !important;
+    overflow: visible !important;
+}
+
+
+/* =========================================================
+   FILTER HEADER CONTENT
+========================================================= */
+
+.filter-header-content {
+    width: 100%;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    box-sizing: border-box;
+}
+
+
+.filter-column-title {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   FILTER TOOLTIP WRAPPER
+========================================================= */
+
+.filter-tooltip-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   FILTER ICON BUTTON
+========================================================= */
+
+.filter-icon-button {
+    width: 27px;
+    height: 27px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+    .filter-icon-button svg {
+        font-size: 12px;
+    }
+
+    .filter-icon-button:hover {
+        background: #ffffff;
+        color: #2e7d32;
+        border-color: #ffffff;
+        transform: translateY(-1px);
+    }
+
+
+    /* =========================================================
+   ACTIVE FILTER ICON
+========================================================= */
+
+    .filter-icon-button.filter-icon-active {
+        background: #ffffff;
+        color: #2e7d32;
+        border-color: #ffffff;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+    }
+
+
+/* =========================================================
+   FILTER TOOLTIP
+   IMPORTANT: TOOLTIP APPEARS ABOVE ICON
+========================================================= */
+
+.filter-tooltip-text {
+    position: absolute;
+    bottom: calc(100% + 9px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+    padding: 6px 9px;
+    border-radius: 5px;
+    background: #1f2937;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+}
+
+
+    /* TOOLTIP ARROW */
+
+    .filter-tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #1f2937;
+    }
+
+
+/* SHOW TOOLTIP */
+
+.filter-tooltip-wrapper:hover
+.filter-tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+
+/* =========================================================
+   FILTER POPUP
+========================================================= */
+
+.acumatica-filter-popup {
+    position: absolute;
+    top: calc(100% + 7px);
+    left: 0;
+    width: 280px;
+    max-width: 280px;
+    min-width: 280px;
+    z-index: 9999;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #cbd5df;
+    border-radius: 7px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    color: #1f2937;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   POPUP HEADER
+========================================================= */
+
+.filter-popup-header {
+    height: 42px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f4f6f8;
+    border-bottom: 1px solid #dce1e6;
+    font-size: 14px;
+    font-weight: 600;
+    color: #263238;
+}
+
+
+/* =========================================================
+   POPUP CLOSE
+========================================================= */
+
+.filter-popup-close {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #6b7280;
+    font-size: 21px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+    .filter-popup-close:hover {
+        background: #e5e7eb;
+        color: #111827;
+    }
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.filter-search-container {
+    padding: 10px;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+    .filter-search-container input {
+        width: 100%;
+        height: 34px;
+        padding: 0 10px;
+        border: 1px solid #cbd5e1;
+        border-radius: 5px;
+        outline: none;
+        color: #374151;
+        background: #ffffff;
+        font-size: 13px;
+        box-sizing: border-box;
+    }
+
+        .filter-search-container input:focus {
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.12);
+        }
+
+
+/* =========================================================
+   SELECT ACTIONS
+========================================================= */
+
+.filter-select-actions {
+    height: 38px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+    .filter-select-actions button {
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: #2563eb;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+        .filter-select-actions button:hover {
+            text-decoration: underline;
+        }
+
+
+/* =========================================================
+   FILTER VALUES
+========================================================= */
+
+.filter-values-list {
+    max-height: 210px;
+    overflow-y: auto;
+    padding: 5px 0;
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   FILTER VALUE ROW
+========================================================= */
+
+.filter-value-row {
+    min-height: 34px;
+    padding: 0 11px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #374151;
+    box-sizing: border-box;
+}
+
+    .filter-value-row:hover {
+        background: #f3f7f3;
+    }
+
+    .filter-value-row input {
+        width: 15px;
+        height: 15px;
+        margin: 0;
+        accent-color: #2e7d32;
+        cursor: pointer;
+    }
+
+    .filter-value-row span {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+
+/* =========================================================
+   NO VALUES
+========================================================= */
+
+.no-filter-values {
+    padding: 20px 10px;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FILTER POPUP FOOTER
+========================================================= */
+
+.filter-popup-footer {
+    height: 48px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    background: #f8fafc;
+    border-top: 1px solid #e5e7eb;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FILTER CLEAR BUTTON
+========================================================= */
+
+.filter-bottom-clear {
+    height: 31px;
+    padding: 0 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #4b5563;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .filter-bottom-clear:hover {
+        background: #f3f4f6;
+    }
+
+
+/* =========================================================
+   FILTER APPLY BUTTON
+========================================================= */
+
+.filter-bottom-apply {
+    height: 31px;
+    padding: 0 14px;
+    border: 1px solid #2e7d32;
+    border-radius: 5px;
+    background: #2e7d32;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .filter-bottom-apply:hover {
+        background: #256b2a;
+    }
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+
+/* =========================================================
+   EDIT / DELETE
+========================================================= */
+
+.edit-btn,
+.delete-btn {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .edit-btn {
-    background: #1976d2;
+    border: 1px solid #2563eb;
+    background: #ffffff;
+    color: #2563eb;
 }
 
+    .edit-btn:hover {
+        background: #2563eb;
+        color: #ffffff;
+    }
+
 .delete-btn {
-    background: #d32f2f;
+    border: 1px solid #dc2626;
+    background: #ffffff;
+    color: #dc2626;
 }
+
+    .delete-btn:hover {
+        background: #dc2626;
+        color: #ffffff;
+    }
+
+    .edit-btn:active,
+    .delete-btn:active {
+        transform: scale(0.95);
+    }
+
+
+/* =========================================================
+   GENERAL TOOLTIP
+========================================================= */
+
+.tooltip {
+    position: relative;
+}
+
+
+/* =========================================================
+   ACTION TOOLTIP
+========================================================= */
 
 .tooltip-text {
     position: absolute;
-    bottom: 120%;
+    bottom: calc(100% + 7px);
     left: 50%;
-    transform: translateX(-50%);
-    background: #333;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    white-space: nowrap;
-    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
     visibility: hidden;
-    transition: 0.3s;
-    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 5000;
+    padding: 5px 8px;
+    border-radius: 4px;
+    background: #1f2937;
+    color: #ffffff;
+    font-size: 11px;
+    white-space: nowrap;
+    transition: opacity 0.15s ease, transform 0.15s ease;
 }
+
+    .tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #1f2937;
+    }
 
 .tooltip:hover .tooltip-text {
-    opacity: 1;
     visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
-.menu-vertical {
-    width: 200px;
-    min-height: 100vh;
-    background: #f4f4f4;
-    padding-top: 30px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-    z-index: 100;
+
+/* =========================================================
+   ACTIVE / INACTIVE
+========================================================= */
+
+.active-text {
+    color: #15803d !important;
+    font-weight: 600;
 }
 
-    .menu-vertical ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: block;
-    }
-
-    .menu-vertical li {
-        margin-bottom: 20px;
-    }
-
-    .menu-vertical a {
-        text-decoration: none;
-        color: #1976d2;
-        font-weight: bold;
-        padding: 10px 20px;
-        display: block;
-        border-radius: 4px;
-        transition: background 0.2s;
-    }
-
-        .menu-vertical a:hover {
-            background: #e3f2fd;
-        }
-
-.pagination-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: #fff;
-    border-top: 1px solid #ddd;
+.inactive-text {
+    color: #dc2626 !important;
+    font-weight: 600;
 }
 
-.record-count {
-    font-size: 15px;
-    color: #444;
+
+/* =========================================================
+   NO DATA
+========================================================= */
+
+.no-data-row {
+    height: 100px !important;
+    text-align: center !important;
+    color: #9ca3af !important;
+    font-size: 14px !important;
     font-weight: 500;
 }
+
+
+/* =========================================================
+   PAGINATION CONTAINER
+========================================================= */
+
+.pagination-container {
+    min-height: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    background: #ffffff;
+    border-top: 1px solid #d8dee5;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 50;
+}
+
+
+/* =========================================================
+   RECORD COUNT
+========================================================= */
+
+.record-count {
+    color: #4b5563;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   PAGINATION BUTTON AREA
+========================================================= */
 
 .pagination-buttons {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 5px;
+    height: 100%;
 }
 
-    .pagination-buttons button {
-        padding: 8px 16px;
-        border: 1px solid #2e7d32;
-        background-color: #2e7d32;
-        color: #ffffff;
-        cursor: pointer;
-        border-radius: 8px;
-        transition: .2s;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+/* =========================================================
+   PAGINATION TOOLTIP WRAPPER
+========================================================= */
+
+.pagination-tooltip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   PAGINATION ICON BUTTON
+========================================================= */
+
+.pagination-icon {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #374151;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+    .pagination-icon svg {
+        font-size: 13px;
     }
 
-        .pagination-buttons button:hover:not(:disabled) {
-            background: #1b5e20;
-            color: white;
-        }
+    .pagination-icon:hover:not(:disabled) {
+        background: #f0fdf4;
+        border-color: #2e7d32;
+        color: #2e7d32;
+    }
 
-        .pagination-buttons button:disabled {
-            opacity: .5;
-            cursor: not-allowed;
-            border-color: #d6d6d6;
-            color: #888888;
-            background-color: #256c2a;
-            transform: translateY(-1px);
-        }
+    .pagination-icon:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        background: #f8fafc;
+    }
+
+
+/* =========================================================
+   PAGINATION TOOLTIP TEXT
+   IMPORTANT: ABOVE BUTTON
+========================================================= */
+
+.pagination-tooltip-text {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    padding: 6px 9px;
+    border-radius: 5px;
+    background: #1f2937;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+}
+
+
+    /* =========================================================
+   PAGINATION TOOLTIP ARROW
+========================================================= */
+
+    .pagination-tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #1f2937;
+    }
+
+
+/* =========================================================
+   SHOW PAGINATION TOOLTIP
+========================================================= */
+
+.pagination-tooltip:hover
+.pagination-tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+
+/* =========================================================
+   PAGE INFORMATION
+========================================================= */
 
 .page-info {
+    min-width: 80px;
+    text-align: center;
+    color: #374151;
+    font-size: 13px;
     font-weight: 600;
-    color: #333;
+    white-space: nowrap;
+}
 
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.table-scroll-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.table-scroll-container::-webkit-scrollbar-track {
+    background: #f1f3f5;
+}
+
+.table-scroll-container::-webkit-scrollbar-thumb {
+    background: #aeb7c1;
+    border-radius: 5px;
+}
+
+    .table-scroll-container::-webkit-scrollbar-thumb:hover {
+        background: #8d98a3;
+    }
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .top-bar {
+        padding: 10px;
+    }
+
+    .top-row {
+        min-height: 48px;
+    }
+
+    .page-title-area h2 {
+        font-size: 18px;
+    }
+
+
+    .clear-all-btn {
+        height: 38px;
+        padding: 0 11px;
+        font-size: 12px;
+    }
+
+    .pagination-container {
+        padding: 0 10px;
+    }
+
+    .record-count {
+        font-size: 12px;
+    }
+
+    .pagination-icon {
+        width: 31px;
+        height: 31px;
+    }
+
+    .page-info {
+        min-width: 70px;
+        font-size: 12px;
+    }
 }

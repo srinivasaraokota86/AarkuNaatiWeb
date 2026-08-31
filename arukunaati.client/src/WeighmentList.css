@@ -1,0 +1,702 @@
+/* =========================================================
+   WEIGHMENT LIST
+========================================================= */
+
+.list-container {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 18px;
+    box-sizing: border-box;
+    background: #f5f7f9;
+    overflow: hidden;
+}
+
+.list-card {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    background: #fff;
+    border-bottom: 1px solid #e1e5e8;
+    box-sizing: border-box;
+}
+
+.add-btn {
+    min-width: 218px;
+    min-height: 48px;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 9px;
+    background: #2e7d32;
+    color: #fff;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 21px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+
+    .add-btn:hover {
+        background: #256628;
+    }
+
+    .add-btn:active {
+        transform: scale(0.98);
+    }
+
+/* =========================================================
+   ACTIVE FILTER BAR
+========================================================= */
+
+.active-filter-bar {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 18px;
+    box-sizing: border-box;
+    background: #eef6ee;
+    border-bottom: 1px solid #cfe3cf;
+    color: #2e5d31;
+    font-size: 13px;
+}
+
+    .active-filter-bar span {
+        font-weight: 600;
+    }
+
+    .active-filter-bar button {
+        border: none;
+        background: transparent;
+        color: #c62828;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+        .active-filter-bar button:hover {
+            text-decoration: underline;
+        }
+
+/* =========================================================
+   TABLE CONTAINER
+========================================================= */
+
+.table-container {
+    flex: 1 1 0%;
+    min-height: 0;
+    width: 100%;
+    overflow: auto;
+    background: #fff;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+table {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    height: 50px;
+    padding: 0 14px;
+    background: #2e7d32;
+    color: #fff;
+    border-right: 1px solid rgba(255, 255, 255, 0.28);
+    border-bottom: 1px solid #1b5e20;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    text-align: center;
+}
+
+td {
+    height: 48px;
+    padding: 0 14px;
+    border-right: 1px solid #e1e5e8;
+    border-bottom: 1px solid #e1e5e8;
+    background: #fff;
+    color: #263238;
+    font-size: 14px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+tbody tr:hover td {
+    background: #f4f8f4;
+}
+
+/* =========================================================
+   HEADER CONTENT
+========================================================= */
+
+.th-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    overflow: visible;
+}
+
+    .th-content span {
+        display: inline-block;
+    }
+
+/* =========================================================
+   FILTER BUTTON
+========================================================= */
+
+.filter-btn {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 3px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+    .filter-btn svg {
+        font-size: 15px;
+    }
+
+    .filter-btn:hover {
+        background: rgba(255, 255, 255, 0.18);
+    }
+
+    .filter-btn.active {
+        background: #fff;
+        color: #2e7d32;
+    }
+
+/* =========================================================
+   ACTION ICONS
+========================================================= */
+
+.action-column {
+    min-width: 110px;
+    width: 110px;
+}
+
+.action-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.edit-btn,
+.delete-btn {
+    position: relative;
+    width: 31px;
+    height: 31px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.edit-btn {
+    color: #087cf0;
+}
+
+.delete-btn {
+    color: #e52e43;
+}
+
+.edit-btn:hover {
+    background: #eaf3ff;
+}
+
+.delete-btn:hover {
+    background: #fff0f2;
+}
+
+.edit-btn svg,
+.delete-btn svg {
+    font-size: 18px;
+}
+/* =========================================================
+   CUSTOM TOOLTIP
+========================================================= */
+
+.icon-tooltip,
+.filter-btn {
+    --tooltip-bg: #263238;
+}
+
+    .icon-tooltip::after,
+    .filter-btn::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        /* CHANGE: tooltip below the icon */
+        top: calc(100% + 8px);
+        bottom: auto;
+        left: 50%;
+        transform: translateX(-50%) translateY(-3px);
+        padding: 6px 10px;
+        border-radius: 4px;
+        background: #263238;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 14px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        /* Keep tooltip above everything */
+        z-index: 99999;
+        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.22);
+        transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    /* Show tooltip */
+    .icon-tooltip:hover::after,
+    .filter-btn:hover::after {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.pagination-container {
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    box-sizing: border-box;
+    background: #fff;
+    border-top: 1px solid #d8dee5;
+}
+
+.record-info {
+    color: #4b5563;
+    font-size: 13px;
+}
+
+.pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.pagination-icon-btn {
+    position: relative;
+    width: 34px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid #cbd2d8;
+    border-radius: 4px;
+    background: #fff;
+    color: #374151;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+    .pagination-icon-btn svg {
+        font-size: 13px;
+    }
+
+    .pagination-icon-btn:hover:not(:disabled) {
+        background: #f1f5f9;
+        border-color: #9ca7b0;
+    }
+
+    .pagination-icon-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+.page-number {
+    min-width: 92px;
+    padding: 0 6px;
+    text-align: center;
+    color: #4b5563;
+    font-size: 12px;
+}
+/* =========================================================
+   PAGINATION TOOLTIP
+   SHOW ABOVE THE ICON
+========================================================= */
+
+.pagination-icon-btn {
+    position: relative;
+}
+
+    /* Tooltip box */
+    .pagination-icon-btn[data-tooltip]::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: calc(100% + 9px);
+        left: 50%;
+        transform: translateX(-50%) translateY(4px);
+        background: #263238;
+        color: #ffffff;
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 14px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 999999;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    /* Tooltip arrow */
+    .pagination-icon-btn[data-tooltip]::before {
+        content: "";
+        position: absolute;
+        bottom: calc(100% + 3px);
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 6px solid #263238;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 999999;
+    }
+
+    /* Show tooltip */
+    .pagination-icon-btn[data-tooltip]:hover::after {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .pagination-icon-btn[data-tooltip]:hover::before {
+        opacity: 1;
+        visibility: visible;
+    }
+ =========================================================
+   /*NO DATA
+========================================================= */
+
+.no-data {
+    height: 80px !important;
+    text-align: center !important;
+    color: #6b7280 !important;
+    font-size: 14px !important;
+}
+
+/* =========================================================
+   FILTER OVERLAY
+========================================================= */
+
+.filter-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    pointer-events: none;
+}
+
+.filter-popup {
+    position: fixed;
+    width: 280px;
+    max-height: 440px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #cfd6dc;
+    border-radius: 3px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
+    pointer-events: auto;
+    overflow: hidden;
+}
+
+/* =========================================================
+   FILTER POPUP HEADER
+========================================================= */
+
+.filter-popup-header {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px 0 14px;
+    box-sizing: border-box;
+    background: #f4f6f8;
+    border-bottom: 1px solid #dce1e5;
+    color: #263238;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+    .filter-popup-header button {
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: #666;
+        font-size: 22px;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+        .filter-popup-header button:hover {
+            color: #222;
+        }
+
+/* =========================================================
+   FILTER SEARCH
+========================================================= */
+
+.filter-popup-search {
+    padding: 9px 12px 6px;
+    background: #fff;
+}
+
+    .filter-popup-search input {
+        width: 100%;
+        height: 32px;
+        padding: 0 9px;
+        box-sizing: border-box;
+        border: 1px solid #8f989f;
+        border-radius: 2px;
+        outline: none;
+        background: #fff;
+        color: #374151;
+        font-size: 13px;
+    }
+
+        .filter-popup-search input:focus {
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 1px rgba(46, 125, 50, 0.18);
+        }
+
+/* =========================================================
+   FILTER SELECT ACTIONS
+========================================================= */
+
+.filter-select-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 14px 8px;
+    background: #fff;
+}
+
+    .filter-select-actions button {
+        padding: 3px 0;
+        border: none;
+        background: transparent;
+        color: #1976d2;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+        .filter-select-actions button:hover {
+            text-decoration: underline;
+        }
+
+/* =========================================================
+   FILTER OPTIONS
+========================================================= */
+
+.filter-options {
+    flex: 1 1 auto;
+    min-height: 80px;
+    max-height: 265px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-top: 1px solid #eceff1;
+    border-bottom: 1px solid #e1e5e8;
+    background: #fff;
+    padding: 4px 0;
+}
+
+.filter-option {
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    color: #555;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+}
+
+    .filter-option:hover {
+        background: #f4f8f4;
+    }
+
+    .filter-option input {
+        width: 17px;
+        height: 17px;
+        margin: 0;
+        cursor: pointer;
+        accent-color: #2e7d32;
+        flex-shrink: 0;
+    }
+
+    .filter-option span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+.filter-no-values {
+    padding: 20px 12px;
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+}
+
+/* =========================================================
+   FILTER FOOTER
+========================================================= */
+
+.filter-popup-actions {
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    background: #fafbfc;
+}
+
+.clear-filter-btn,
+.apply-filter-btn {
+    min-width: 112px;
+    height: 36px;
+    padding: 0 13px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.clear-filter-btn {
+    border: 1px solid #c7cdd2;
+    background: #fff;
+    color: #444;
+}
+
+    .clear-filter-btn:hover {
+        background: #f1f3f5;
+    }
+
+.apply-filter-btn {
+    border: 1px solid #2e7d32;
+    background: #2e7d32;
+    color: #fff;
+}
+
+    .apply-filter-btn:hover {
+        background: #256628;
+    }
+
+/* =========================================================
+   SCROLLBARS
+========================================================= */
+
+.table-container::-webkit-scrollbar,
+.filter-options::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb,
+.filter-options::-webkit-scrollbar-thumb {
+    background: #aeb7bf;
+    border-radius: 5px;
+}
+
+    .table-container::-webkit-scrollbar-thumb:hover,
+    .filter-options::-webkit-scrollbar-thumb:hover {
+        background: #89939c;
+    }
+
+.table-container::-webkit-scrollbar-track,
+.filter-options::-webkit-scrollbar-track {
+    background: #f1f3f4;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+    .list-container {
+        padding: 10px;
+    }
+
+    .header {
+        min-height: 70px;
+        padding: 0 14px;
+    }
+
+    .add-btn {
+        min-width: 170px;
+        font-size: 16px;
+    }
+
+    .pagination-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 8px 12px;
+    }
+
+    .filter-popup {
+        width: min(280px, calc(100vw - 16px));
+    }
+}

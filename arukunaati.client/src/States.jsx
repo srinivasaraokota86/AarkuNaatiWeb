@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./LocationManagement.css";
 import CreatableSelect from "react-select/creatable";
+// eslint-disable-next-line no-unused-vars
 import { components } from "react-select";
 import { FaSearch } from "react-icons/fa";
 

@@ -1,0 +1,185 @@
+/* ===========================
+   Selector Input
+=========================== */
+
+.selector-box{
+    position: relative;
+    width: 100%;
+}
+
+.selector-input{
+    width: 100%;
+    height: 45px;
+    padding: 0 50px 0 12px;*/   /* leave space for icon */
+    /*border: 1px solid #cfcfcf;
+    border-radius: 6px;
+    outline: none;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.selector-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+}
+
+.selector-btn svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+    color: #555;
+}
+
+.selector-btn:hover svg{
+    color: #1976d2;
+}
+/* ===========================
+   Popup
+=========================== */
+
+.selector-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    max-width: 95%;
+    height: 600px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===========================
+   Header
+=========================== */
+
+.selector-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #1976d2;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.selector-header button {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* ===========================
+   Search Box
+=========================== */
+
+.popup-search {
+    margin: 15px;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+}
+
+.popup-search:focus {
+    border-color: #1976d2;
+}
+
+/* ===========================
+   Table Container
+=========================== */
+
+.selector-table-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+/* ===========================
+   Table
+=========================== */
+
+.selector-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.selector-table thead th {
+    position: sticky;
+    top: 0;
+    background: #1976d2;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    z-index: 10;
+}
+
+.selector-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.selector-table tbody tr {
+    cursor: pointer;
+    transition: .2s;
+}
+
+.selector-table tbody tr:hover {
+    background: #d8ebff;
+}
+
+/* ===========================
+   /*Scrollbar
+=========================== */
+
+.selector-table-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.selector-table-container::-webkit-scrollbar-thumb {
+    background: #b5b5b5;
+    border-radius: 5px;
+}
+
+.selector-table-container::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width: 768px) {
+
+    .selector-popup {
+        width: 98%;
+        height: 90vh;
+    }
+
+    .selector-table th,
+    .selector-table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

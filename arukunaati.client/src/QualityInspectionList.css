@@ -1,0 +1,692 @@
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.list-container {
+    width: 100%;
+    height: 100vh;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background: #f5f7f9;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.top-bar {
+    min-height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    background: #fff;
+    border-bottom: 1px solid #d8dee5;
+    box-sizing: border-box;
+    margin-bottom: 18px;
+}
+
+    .top-bar h2 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 500;
+        color: #263238;
+    }
+
+/* =========================================================
+   ADD PAYMENT BUTTON
+========================================================= */
+.quality-top-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    height: 45px;
+    min-width: 200px;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+    .add-btn:hover {
+        background: #256b2a;
+    }
+
+    .add-btn svg {
+        font-size: 18px;
+    }
+
+
+
+/* =========================================================
+   ACTIVE FILTER BAR
+========================================================= */
+
+.active-filter-bar {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 16px;
+    background: #eef6ee;
+    border-bottom: 1px solid #cfe3cf;
+    box-sizing: border-box;
+    color: #2e5d31;
+    font-size: 13px;
+}
+
+    .active-filter-bar span {
+        font-weight: 600;
+    }
+
+    .active-filter-bar button {
+        border: none;
+        background: transparent;
+        color: #c62828;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+/* =========================================================
+   TABLE CONTAINER
+========================================================= */
+
+.table-container {
+    flex: 1 1 0%;
+    min-height: 0;
+    width: 100%;
+    overflow: auto;
+    background: #fff;
+    position: relative;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.list-table {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    background: #fff;
+}
+
+    .list-table th {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        height: 48px;
+        padding: 0 12px;
+        background: #2e7d32;
+        color: #fff;
+        border-right: 1px solid rgba(255, 255, 255, 0.28);
+        border-bottom: 1px solid #1b5e20;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+        text-align: left;
+    }
+
+    .list-table td {
+        height: 48px;
+        padding: 0 12px;
+        border-right: 1px solid #e1e5e8;
+        border-bottom: 1px solid #e1e5e8;
+        background: #fff;
+        color: #374151;
+        font-size: 13px;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .list-table tbody tr:hover td {
+        background: #f4f8f4;
+    }
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.th-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+    .th-content span {
+        display: inline-block;
+    }
+
+/* =========================================================
+   FILTER BUTTON
+========================================================= */
+
+.filter-btn {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 3px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+    .filter-btn:hover {
+        background: rgba(255, 255, 255, 0.18);
+        color: #fff;
+    }
+
+    .filter-btn.active {
+        background: #fff;
+        color: #2e7d32;
+    }
+
+/* =========================================================
+   ACTION COLUMN / ICONS
+========================================================= */
+
+.action-column {
+    width: 125px;
+    min-width: 125px;
+    text-align: center !important;
+}
+
+.action-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.edit-icon {
+    color: #1976d2;
+    font-size: 17px;
+    cursor: pointer;
+    transition: transform 0.15s, color 0.15s;
+}
+
+    .edit-icon:hover {
+        color: #0d47a1;
+        transform: scale(1.08);
+    }
+
+.delete-icon {
+    color: #e3263e;
+    font-size: 17px;
+    cursor: pointer;
+    transition: transform 0.15s, color 0.15s;
+}
+
+    .delete-icon:hover {
+        color: #b71c1c;
+        transform: scale(1.08);
+    }
+
+/* =========================================================
+   ACUMATICA FILTER POPUP
+========================================================= */
+
+.filter-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    pointer-events: none;
+}
+
+.filter-popup {
+    position: fixed;
+    width: 280px;
+    max-height: 440px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #cfd6dc;
+    border-radius: 3px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
+    pointer-events: auto;
+    overflow: hidden;
+}
+
+/* =========================================================
+   FILTER HEADER
+========================================================= */
+
+.filter-popup-header {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px 0 14px;
+    box-sizing: border-box;
+    background: #f4f6f8;
+    border-bottom: 1px solid #dce1e5;
+    color: #263238;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+    .filter-popup-header button {
+        width: 28px;
+        height: 28px;
+        border: none;
+        background: transparent;
+        color: #666;
+        font-size: 22px;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+        .filter-popup-header button:hover {
+            color: #222;
+        }
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.filter-popup-search {
+    padding: 9px 12px 6px;
+    background: #fff;
+}
+
+    .filter-popup-search input {
+        width: 100%;
+        height: 32px;
+        padding: 0 9px;
+        box-sizing: border-box;
+        border: 1px solid #8f989f;
+        border-radius: 2px;
+        outline: none;
+        background: #fff;
+        color: #374151;
+        font-size: 13px;
+    }
+
+        .filter-popup-search input:focus {
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 1px rgba(46, 125, 50, 0.18);
+        }
+
+/* =========================================================
+   SELECT ALL / CLEAR
+========================================================= */
+
+.filter-select-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 14px 8px;
+    background: #fff;
+}
+
+    .filter-select-actions button {
+        border: none;
+        background: transparent;
+        color: #1976d2;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 3px 0;
+    }
+
+        .filter-select-actions button:hover {
+            text-decoration: underline;
+        }
+
+/* =========================================================
+   FILTER OPTIONS
+========================================================= */
+
+.filter-options {
+    flex: 1 1 auto;
+    min-height: 80px;
+    max-height: 265px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-top: 1px solid #eceff1;
+    border-bottom: 1px solid #e1e5e8;
+    background: #fff;
+    padding: 4px 0;
+}
+
+.filter-option {
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    color: #555;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+}
+
+    .filter-option:hover {
+        background: #f4f8f4;
+    }
+
+    .filter-option input {
+        width: 17px;
+        height: 17px;
+        margin: 0;
+        cursor: pointer;
+        accent-color: #2e7d32;
+        flex-shrink: 0;
+    }
+
+    .filter-option span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+.filter-no-values {
+    padding: 20px 12px;
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+}
+
+/* =========================================================
+   FILTER FOOTER
+========================================================= */
+
+.filter-popup-actions {
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    background: #fafbfc;
+}
+
+.clear-filter-btn,
+.apply-filter-btn {
+    min-width: 112px;
+    height: 36px;
+    padding: 0 13px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.clear-filter-btn {
+    border: 1px solid #c7cdd2;
+    background: #fff;
+    color: #444;
+}
+
+    .clear-filter-btn:hover {
+        background: #f1f3f5;
+    }
+
+.apply-filter-btn {
+    border: 1px solid #2e7d32;
+    background: #2e7d32;
+    color: #fff;
+}
+
+    .apply-filter-btn:hover {
+        background: #256628;
+    }
+
+/* =========================================================
+   NO DATA
+========================================================= */
+
+.no-data {
+    text-align: center !important;
+    padding: 35px !important;
+    color: #6b7280 !important;
+    font-size: 14px !important;
+}
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.pagination-container {
+    min-height: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background: #fff;
+    border-top: 1px solid #d8dee5;
+    box-sizing: border-box;
+}
+
+
+    /* =========================================================
+   RECORD INFORMATION
+========================================================= */
+
+    .pagination-container .record-info {
+        font-size: 13px;
+        color: #4b5563;
+        white-space: nowrap;
+    }
+
+
+    /* =========================================================
+   PAGINATION BUTTONS
+========================================================= */
+
+    .pagination-container .pagination-buttons {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+
+    /* =========================================================
+   PAGINATION ICON BUTTON
+========================================================= */
+
+    .pagination-container .pagination-icon-btn {
+        position: relative;
+        width: 38px;
+        min-width: 38px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid #cbd2d8;
+        border-radius: 4px;
+        background: #fff;
+        color: #4b5563;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+
+
+        /* ICON */
+
+        .pagination-container .pagination-icon-btn svg {
+            font-size: 14px;
+        }
+
+
+        /* HOVER */
+
+        .pagination-container .pagination-icon-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: #9ca7b0;
+            color: #1976d2;
+        }
+
+
+        /* DISABLED */
+
+        .pagination-container .pagination-icon-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+
+    /* =========================================================
+   PAGE NUMBER
+========================================================= */
+
+    .pagination-container .page-number {
+        min-width: 75px;
+        text-align: center;
+        font-size: 12px;
+        color: #4b5563;
+        white-space: nowrap;
+    }
+
+
+    /* =========================================================
+   PAGINATION TOOLTIP
+========================================================= */
+
+    .pagination-container .icon-tooltip {
+        position: absolute;
+        bottom: calc(100% + 7px);
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 5px 8px;
+        background: #263238;
+        color: #fff;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 500;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 9999;
+    }
+
+
+        /* TOOLTIP ARROW */
+
+        .pagination-container .icon-tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #263238;
+        }
+
+
+    /* SHOW TOOLTIP */
+
+    .pagination-container .pagination-icon-btn:hover .icon-tooltip {
+        opacity: 1;
+        visibility: visible;
+    }
+/* =========================================================
+   SCROLLBARS
+========================================================= */
+
+.table-container::-webkit-scrollbar,
+.filter-options::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb,
+.filter-options::-webkit-scrollbar-thumb {
+    background: #aeb7bf;
+    border-radius: 5px;
+}
+
+    .table-container::-webkit-scrollbar-thumb:hover,
+    .filter-options::-webkit-scrollbar-thumb:hover {
+        background: #89939c;
+    }
+
+.table-container::-webkit-scrollbar-track,
+.filter-options::-webkit-scrollbar-track {
+    background: #f1f3f4;
+}
+.payment-list-top {
+    width: 100%;
+    min-height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px 16px;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+
+.add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 45px;
+    min-width: 200px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 9px;
+    background: #2e7d32;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: auto;
+    transition: background 0.2s ease;
+}
+
+.add-btn:hover {
+    background: #256b2a;
+}
+
+.add-btn svg {
+    font-size: 18px;
+}
+
+.filter-popup {
+    width: min(280px, calc(100vw - 16px));
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px;
+    }
+}

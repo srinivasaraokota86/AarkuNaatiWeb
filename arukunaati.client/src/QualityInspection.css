@@ -1,0 +1,171 @@
+/* ===========================
+   Quality Inspection
+=========================== */
+
+.quality-container {
+    width: 100%;
+    padding: 30px;
+    background: #f4f7fb;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.quality-card {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 35px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+}
+
+.quality-card h2 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.quality-card hr {
+    border: none;
+    border-top: 2px solid #e5e7eb;
+    margin: 20px 0 30px;
+}
+
+    /* Labels */
+
+.quality-card>label {
+    display: block;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2e7d32;
+}
+
+    /* Inputs */
+
+.quality-card input,
+.quality-card select,
+.quality-card textarea {
+
+    width: 100%;
+    padding: 16px 18px;
+    font-size: 17px;
+    border: 1px solid #d6dbe1;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+    transition: .3s;
+    background: white;
+
+}
+
+.quality-card input:focus,
+.quality-card select:focus,
+.quality-card textarea:focus {
+
+    border-color: #2e7d32;
+    box-shadow: 0 0 5px rgba(46, 125, 50, .25);
+
+}
+
+/* Radio */
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    color: #333;
+}
+
+.radio-group input[type="radio"] {
+    width: 22px;
+    height: 22px;
+}
+
+/* Save Button */
+
+.save-btn {
+    width: 250px;
+    height: 52px;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.save-btn:hover {
+    background: #1b5e20;
+}
+/* Button Alignment */
+
+.button-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+
+.quality-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    margin-top:20px;
+}
+
+.quality-grid > div{
+    display:flex;
+    flex-direction:column;
+}
+
+.quality-grid label{
+    margin-bottom:8px;
+    color:#2e7d32;
+    font-weight:600;
+}
+
+@media(max-width:768px){
+    .quality-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+.section-title {
+    color: #2e7d32;
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.section-line {
+    border: none;
+    border-top: 2px solid #ddd;
+    margin: 15px 0 25px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #2e7d32;
+    font-size: 18px;
+    font-weight: 600;
+}
