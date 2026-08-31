@@ -14,14 +14,15 @@ namespace ArukuNaati.Server.Controllers
     public class FarmersController : ControllerBase
     {
 
-          private readonly AppDbContext _context;
+         /* private readonly AppDbContext _context;
 
           public FarmersController(AppDbContext context)
           {
               _context = context;
           }
+         */
 
-        /*ivate readonly AppDbContext _context;
+        private readonly AppDbContext _context;
         private readonly AcumaticaService _acumaticaService;
 
         public FarmersController(
@@ -30,7 +31,7 @@ namespace ArukuNaati.Server.Controllers
         {
             _context = context;
             _acumaticaService = acumaticaService;
-        }*/
+        }
 
         // Fix for CS1061: Correcting the DbSet name to match the property defined in AppDbContext
         /*  [HttpGet]
@@ -41,9 +42,14 @@ namespace ArukuNaati.Server.Controllers
           }*/
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(int page = 1, int pageSize = 20)
         {
-            var data = await _context.Farmers
+            var totalRecords = await _context.Farmers.CountAsync();
+            var farmers = await _context.Farmers
+        .OrderBy(x => x.Name)
+        .Skip((page - 1) * pageSize)
+        .Take(pageSize)
+            //var data = await _context.Farmers
                 .Select(f => new
                 {
                     f.Id,
@@ -54,11 +60,12 @@ namespace ArukuNaati.Server.Controllers
                     f.GSTNO,
                     IsActive = f.ISActive,
                     f.CreatedDate,
-                    Address = _context.FarmerAddresses.FirstOrDefault(a => a.FarmerId == f.Id)
+                    Address = _context.FarmerAddresses.FirstOrDefault(a => a.FarmerId == f.Id),
+                    Payment = _context.FarmerPayment.FirstOrDefault(a => a.FarmerId == f.Id),
                 })
                 .ToListAsync();
 
-            var result = data.Select(f =>
+            var result = farmers.Select(f =>
             {
                 var address = f.Address;
                 var village = address?.VillageId != null ? _context.Villages.FirstOrDefault(v => v.VillageId == address.VillageId) : null;
@@ -66,24 +73,10 @@ namespace ArukuNaati.Server.Controllers
                 var district = address?.DistrictId != null ? _context.Districts.FirstOrDefault(d => d.DistrictId == address.DistrictId) : null;
                 var state = address?.StateId != null ? _context.States.FirstOrDefault(s => s.StateId == address.StateId) : null;
 
+                var payment = f.Payment;
+
                 return new
                 {
-                    /* f.Id,
-                     f.FarmerCode,
-                     f.Name,
-                     f.Mobile,
-                     f.AadharNo,
-                     f.GSTNO,
-                     f.IsActive,
-                     f.CreatedDate,
-                     villageName = village?.VillageName ?? "",
-                     mandalName = mandal?.MandalName ?? "",
-                     districtName = district?.DistrictName ?? "",
-                     stateName = state?.StateName ?? "",
-                     pinCode = address?.PinCode ?? "",
-                     fullAddress = address?.FullAddress ?? ""
-                 };*/
-
                     f.Id,
                     f.FarmerCode,
                     f.Name,
@@ -106,11 +99,29 @@ namespace ArukuNaati.Server.Controllers
                     stateName = state?.StateName ?? "",
 
                     pinCode = address?.PinCode ?? "",
-                    fullAddress = address?.FullAddress ?? ""
-                };
-                });
+                    fullAddress = address?.FullAddress ?? "",
 
-            return Ok(result);
+                    // Payment details
+                    bank = payment?.Bank,
+                    accountNo = payment?.AccountNo,
+                    ifsc = payment?.IFSC,
+                    amount = payment?.Amount,
+                    paymentMethod = payment?.PaymentMethod,
+                    referenceNo = payment?.ReferenceNo,
+                    paymentDate = payment?.PaymentDate,
+                    release = payment?.Release,
+
+                };
+            });
+
+            //return Ok(result);
+            return Ok(new
+            {
+                totalRecords,
+                currentPage = page,
+                pageSize,
+                data = result
+            });
         }
 
         [HttpPost("register")]
@@ -129,7 +140,15 @@ namespace ArukuNaati.Server.Controllers
                         message = "Aadhaar already exists"
                     });
                 }
-
+                //Duplicate Farmer id chack
+                if (await _context.Farmers
+    .AnyAsync(x => x.FarmerCode == dto.Farmer.FarmerCode))
+                {
+                    return BadRequest(new
+                    {
+                        message = "Farmer Code already exists"
+                    });
+                }
                 // Generate Farmer Id
                 dto.Farmer.Id =
                     "F" + DateTime.Now.Ticks
@@ -146,6 +165,12 @@ namespace ArukuNaati.Server.Controllers
 
                 _context.FarmerAddresses
                     .Add(dto.Address);
+                //payment
+
+                dto.Payment.FarmerId = dto.Farmer.Id;
+
+                _context.FarmerPayment.Add(dto.Payment);
+
 
                 // Land
                 // dto.Land.FarmerId =
@@ -161,9 +186,9 @@ namespace ArukuNaati.Server.Controllers
                 //  _context.FarmerCrops
                 //  .Add(dto.Crop);
 
-                 await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 // Create Vendor in Acumatica
-                //ait _acumaticaService.CreateVendor(dto.Farmer);
+                await _acumaticaService.CreateVendor(dto.Farmer);
 
                 return Ok(new
                  {
@@ -189,8 +214,95 @@ namespace ArukuNaati.Server.Controllers
                 });
             }
         }
+        [HttpPost("acumatica-vendor")]
+        public async Task<IActionResult> CreateFarmerFromVendor(
+    [FromBody] AcumaticaVendorDto dto)
+        {
+            try
+            {
+                // Get actual values from Acumatica
+                string? vendorId = dto.VendorID?.Value;
+                string? vendorName = dto.VendorName?.Value;
 
+                // Vendor ID is required
+                if (string.IsNullOrWhiteSpace(vendorId))
+                {
+                    return BadRequest(new
+                    {
+                        message = "Vendor ID is required"
+                    });
+                }
 
+                // Check duplicate Vendor/Farmer Code
+                bool alreadyExists = await _context.Farmers
+                    .AnyAsync(x => x.FarmerCode == vendorId);
+
+                if (alreadyExists)
+                {
+                    return Ok(new
+                    {
+                        message = "Vendor already exists in ArukuNaati",
+                        farmerCode = vendorId
+                    });
+                }
+
+                // Generate Farmer ID
+                var farmer = new Farmers
+                {
+                    Id = "F" + DateTime.Now.Ticks
+                        .ToString()
+                        .Substring(10),
+
+                    FarmerCode = vendorId,
+
+                    Name = vendorName ?? "",
+
+                    // Acumatica Vendor does not provide these fields
+                    Mobile = "",
+                    AadharNo = "",
+                    GSTNO = "",
+
+                    CreatedDate = DateTime.Now
+                };
+
+                _context.Farmers.Add(farmer);
+
+                await _context.SaveChangesAsync();
+
+                return Ok(new
+                {
+                    message = "Acumatica Vendor created as Farmer successfully",
+                    farmerId = farmer.Id,
+                    farmerCode = farmer.FarmerCode,
+                    farmerName = farmer.Name
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    message = ex.Message,
+                    innerException = ex.InnerException?.Message
+                });
+            }
+        }
+        [HttpGet("acumatica-vendors")]
+        public async Task<IActionResult> GetAcumaticaVendors()
+        {
+            try
+            {
+                var vendors = await _acumaticaService.GetVendors();
+
+                return Ok(vendors);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    message = ex.InnerException?.Message ?? ex.Message
+                });
+            }
+        }
         /* [HttpPut("{id}")]
          public async Task<IActionResult> PutFarmer(
      string id,
@@ -265,6 +377,20 @@ namespace ArukuNaati.Server.Controllers
                     address.PinCode = dto.Address.PinCode;
                     address.FullAddress = dto.Address.FullAddress;
                 }
+                var payment = await _context.FarmerPayment
+                    .FirstOrDefaultAsync(x => x.FarmerId == id);
+
+                if (payment != null)
+                {
+                    payment.Bank = dto.Payment.Bank;
+                    payment.AccountNo = dto.Payment.AccountNo;
+                    payment.IFSC = dto.Payment.IFSC;
+                    payment.Amount = dto.Payment.Amount;
+                    payment.PaymentMethod = dto.Payment.PaymentMethod;
+                    payment.ReferenceNo = dto.Payment.ReferenceNo;
+                    payment.PaymentDate = dto.Payment.PaymentDate;
+                    payment.Release = dto.Payment.Release;
+                }
 
                 await _context.SaveChangesAsync();
 
@@ -282,18 +408,24 @@ namespace ArukuNaati.Server.Controllers
         {
             try
             {
-                var farmer = await _context.Farmers.FindAsync(id);
-                if (farmer == null)
-                    return NotFound();
+                var payment = await _context.FarmerPayment
+    .FirstOrDefaultAsync(x => x.FarmerId == id);
 
-                var address = await _context.FarmerAddresses.FirstOrDefaultAsync(a => a.FarmerId == id);
+                if (payment != null)
+                    _context.FarmerPayment.Remove(payment);
+
+                var address = await _context.FarmerAddresses
+                    .FirstOrDefaultAsync(x => x.FarmerId == id);
+
                 if (address != null)
                     _context.FarmerAddresses.Remove(address);
 
-                _context.Farmers.Remove(farmer);
+                var farmer = await _context.Farmers.FindAsync(id);
+
+                if (farmer != null)
+                    _context.Farmers.Remove(farmer);
 
                 await _context.SaveChangesAsync();
-
                 return Ok(new { message = "Farmer Registration Deleted Successfully" });
             }
             catch (Exception ex)

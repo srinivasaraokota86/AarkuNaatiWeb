@@ -55,10 +55,22 @@ namespace ArukuNaati.Server.Controllers
 
         // Get All
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(int page = 1, int pageSize = 20)
         {
-            var data = await _context.Customers.ToListAsync();
-            return Ok(data);
+            var totalRecords = await _context.Customers.CountAsync();
+            var customers = await _context.Customers
+                .OrderBy(c => c.CustomerName) // Fixed: Changed 'Name' to 'CustomerName'
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync(); // Added ToListAsync() to execute the query
+
+            return Ok(new
+            {
+                totalRecords,
+                currentPage = page,
+                pageSize,
+                data = customers // Fixed: Changed 'result' to 'customers'
+            });
         }
 
         [HttpPut("{id}")]

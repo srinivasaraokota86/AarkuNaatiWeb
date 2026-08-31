@@ -149,6 +149,54 @@ namespace ArukuNaati.Server.Migrations
                     b.ToTable("FarmerAddresses");
                 });
 
+            modelBuilder.Entity("ArukuNaati.Server.Models.FarmerPayment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccountNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Bank")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FarmerId")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("IFSC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReferenceNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Release")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FarmerId");
+
+                    b.ToTable("FarmerPayment");
+                });
+
             modelBuilder.Entity("ArukuNaati.Server.Models.Farmers", b =>
                 {
                     b.Property<string>("Id")
@@ -160,10 +208,6 @@ namespace ArukuNaati.Server.Migrations
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FarmerCode")
                         .IsRequired()
@@ -187,6 +231,46 @@ namespace ArukuNaati.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Farmers");
+                });
+
+            modelBuilder.Entity("ArukuNaati.Server.Models.IntegrationSettings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BaseUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EndpointName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EndpointVersion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecretKey")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IntegrationSettings");
                 });
 
             modelBuilder.Entity("ArukuNaati.Server.Models.Mandal", b =>
@@ -272,6 +356,17 @@ namespace ArukuNaati.Server.Migrations
                     b.HasKey("VillageId");
 
                     b.ToTable("Villages");
+                });
+
+            modelBuilder.Entity("ArukuNaati.Server.Models.FarmerPayment", b =>
+                {
+                    b.HasOne("ArukuNaati.Server.Models.Farmers", "Farmer")
+                        .WithMany()
+                        .HasForeignKey("FarmerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Farmer");
                 });
 #pragma warning restore 612, 618
         }

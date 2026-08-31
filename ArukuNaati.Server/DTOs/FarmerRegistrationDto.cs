@@ -8,6 +8,9 @@ namespace ArukuNaati.Server.DTOs
 
         public FarmerAddress Address { get; set; }
 
+        public FarmerPayment Payment { get; set; }
+
+
         //public FarmerLand Land { get; set; }
 
         //public FarmerCrop Crop { get; set; }
