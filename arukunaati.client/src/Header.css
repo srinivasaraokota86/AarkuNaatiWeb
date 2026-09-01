@@ -1,11 +1,11 @@
-.header {
+/*.header {
     height: 65px;
     background: white;
     display: flex;
-    justify-content: flex-end; /* Align items to the right */
-    align-items: center;
-    padding: 0 25px 0 265px; /* Leave space for sidebar */
-    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+    justify-content: flex-end;*/ /* Align items to the right */
+    /*align-items: center;
+    padding: 0 25px 0 265px;*/ /* Leave space for sidebar */
+    /*box-shadow: 0 2px 10px rgba(0,0,0,.1);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -19,8 +19,8 @@
 .profile-section {
     display: flex;
     align-items: center;
-    gap: 16px; /* Space between datepicker and profile icon */
-    position: relative;
+    gap: 16px;*/ /* Space between datepicker and profile icon */
+    /*position: relative;
 }
 
 .header-datepicker {
@@ -78,8 +78,459 @@
     transition: background 0.2s, border 0.2s, color 0.2s;
 }
     .date-picker-input:hover {
-        background: #e3f2fd; /* Light blue background on hover */
-        border-color: #1565c0; /* Darker blue border on hover */
-        color: #1565c0; /* Darker blue text on hover */
-        cursor: pointer;
+        background: #e3f2fd;*/ /* Light blue background on hover */
+        /*border-color: #1565c0;*/ /* Darker blue border on hover */
+        /*color: #1565c0;*/ /* Darker blue text on hover */
+        /*cursor: pointer;
+    }*/
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 22px;
+    background: #ffffff;
+    border-bottom: 1px solid #dfe4e8;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1000;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+
+    /* =========================================================
+   HEADER LEFT / TITLE AREA
+========================================================= */
+
+    .header h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        font-weight: 600;
+        color: #263238;
+        flex: 1;
     }
+
+
+/* =========================================================
+   DATE PICKER AREA
+========================================================= */
+
+.header-datepicker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 18px;
+}
+
+
+/* =========================================================
+   DATE PICKER INPUT
+========================================================= */
+
+.date-picker-input {
+    height: 38px;
+    min-width: 190px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border: 1px solid #d1d9e0;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+
+    /* Calendar icon */
+
+    .date-picker-input svg {
+        font-size: 15px;
+        flex-shrink: 0;
+    }
+
+
+    /* Date hover */
+
+    .date-picker-input:hover {
+        background: #f8fafc;
+        border-color: #90a4ae;
+    }
+
+
+    /* Date focus */
+
+    .date-picker-input:focus {
+        outline: none;
+        border-color: #2e7d32;
+        box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.10);
+    }
+
+
+/* =========================================================
+   PROFILE SECTION
+========================================================= */
+
+.profile-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   PROFILE ICON
+========================================================= */
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #2e7d32;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    border: 2px solid #e8f5e9;
+    box-sizing: border-box;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+
+    /* Profile hover */
+
+    .profile-icon:hover {
+        background: #256b2a;
+        box-shadow: 0 3px 10px rgba(46, 125, 50, 0.25);
+        transform: translateY(-1px);
+    }
+
+
+    /* Profile active */
+
+    .profile-icon:active {
+        transform: scale(0.96);
+    }
+
+
+/* =========================================================
+   PROFILE DROPDOWN
+========================================================= */
+
+.profile-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 235px;
+    background: #ffffff;
+    border: 1px solid #dfe4e8;
+    border-radius: 9px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+    padding: 8px 0;
+    box-sizing: border-box;
+    animation: profileMenuOpen 0.15s ease-out;
+}
+
+
+/* =========================================================
+   DROPDOWN ANIMATION
+========================================================= */
+
+@keyframes profileMenuOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   USER NAME
+========================================================= */
+
+.profile-menu p {
+    margin: 0;
+    padding: 10px 16px 9px;
+    color: #263238;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   MENU DIVIDER
+========================================================= */
+
+.profile-menu hr {
+    margin: 3px 0 6px;
+    border: 0;
+    border-top: 1px solid #edf0f2;
+}
+
+
+/* =========================================================
+   MENU BUTTON
+========================================================= */
+
+.profile-menu button {
+    width: calc(100% - 12px);
+    min-height: 42px;
+    margin: 2px 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 11px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background 0.18s ease, color 0.18s ease;
+}
+
+
+    /* Menu icons */
+
+    .profile-menu button svg {
+        width: 16px;
+        margin-right: 12px;
+        color: #64748b;
+        font-size: 14px;
+        flex-shrink: 0;
+        transition: color 0.18s ease;
+    }
+
+
+    /* Menu hover */
+
+    .profile-menu button:hover {
+        background: #f1f7f2;
+        color: #2e7d32;
+    }
+
+
+        /* Icon hover */
+
+        .profile-menu button:hover svg {
+            color: #2e7d32;
+        }
+
+
+    /* =========================================================
+   LOGOUT BUTTON
+========================================================= */
+
+    .profile-menu button:last-child {
+        margin-top: 4px;
+        border-top: 1px solid #edf0f2;
+        border-radius: 0 0 6px 6px;
+        color: #dc2626;
+    }
+
+
+        /* Logout icon */
+
+        .profile-menu button:last-child svg {
+            color: #dc2626;
+        }
+
+
+        /* Logout hover */
+
+        .profile-menu button:last-child:hover {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+
+/* =========================================================
+   REACT DATEPICKER POPUP
+========================================================= */
+
+.react-datepicker {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    border: 1px solid #d9e0e5 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   DATEPICKER HEADER
+========================================================= */
+
+.react-datepicker__header {
+    background: #2e7d32 !important;
+    border-bottom: none !important;
+    padding-top: 10px !important;
+}
+
+
+/* Month / Year */
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+    color: #ffffff !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+}
+
+
+/* Week names */
+
+.react-datepicker__day-name {
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+}
+
+
+/* =========================================================
+   DATE CELLS
+========================================================= */
+
+.react-datepicker__day {
+    color: #374151 !important;
+    font-size: 12px !important;
+    border-radius: 5px !important;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+
+    /* Date hover */
+
+    .react-datepicker__day:hover {
+        background: #e8f5e9 !important;
+        color: #2e7d32 !important;
+    }
+
+
+/* Selected date */
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+    background: #2e7d32 !important;
+    color: #ffffff !important;
+}
+
+
+/* Today */
+
+.react-datepicker__day--today {
+    font-weight: 700 !important;
+    color: #2e7d32 !important;
+}
+
+
+/* Selected + today */
+
+.react-datepicker__day--selected.react-datepicker__day--today {
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   DATEPICKER ARROWS
+========================================================= */
+
+.react-datepicker__navigation-icon::before {
+    border-color: #ffffff !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .header {
+        height: 60px;
+        padding: 0 14px;
+    }
+
+
+    .header-datepicker {
+        margin-right: 12px;
+    }
+
+
+    .date-picker-input {
+        min-width: 165px;
+        height: 36px;
+        padding: 0 10px;
+        font-size: 12px;
+    }
+
+
+    .profile-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
+    }
+
+
+    .profile-menu {
+        width: 220px;
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .header {
+        padding: 0 10px;
+    }
+
+
+    .date-picker-input {
+        min-width: auto;
+        width: 40px;
+        padding: 0;
+    }
+
+
+        .date-picker-input svg {
+            margin-right: 0 !important;
+        }
+
+
+    .date-picker-input {
+        font-size: 0;
+    }
+
+
+    .profile-menu {
+        right: -5px;
+    }
+}

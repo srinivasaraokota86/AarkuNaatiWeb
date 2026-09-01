@@ -1,92 +1,144 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
-import { Link } from "react-router-dom";
+
+import agricultureImg from "./assets/agriculture-conventionnelle-traitement.jpg";
+import droneImg from "./assets/image 6.jpg";
+
+// Background Images
+import image1 from "./assets/image 1.jpg";
+import image2 from "./assets/image 2.jpg";
+import image3 from "./assets/image 3.jpg";
+import image4 from "./assets/image 4.jpg";
+import image5 from "./assets/image 5.jpg";
+import image6 from "./assets/image 6.jpg";
 
 export default function Login() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [login, setLogin] = useState({
+    userName: "",
+    password: "",
+  });
 
-    const [login, setLogin] = useState({
-        userName: "",
-        password: ""
-    });
+  // Background slideshow images
+  const images = [
+    image1,
+    image2,
+    image3,
+    image4,
+    image5,
+    image6,
+  ];
 
-    async function handleSubmit(e) {
+  const [currentImage, setCurrentImage] = useState(0);
 
-        e.preventDefault();
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 3000);
 
-        try {
+    return () => clearInterval(interval);
+  }, [images.length]);
 
-            const response = await axios.post(
-                "https://localhost:7130/api/users/login",
-                login
-            );
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-            localStorage.setItem("isAuthenticated", "true");
-            localStorage.setItem("userName", response.data.userName);
-            localStorage.setItem("email", response.data.email);
+    try {
+     const response = await axios.post(
+  "http://localhost:5135/api/users/login",
+  login
+);
 
-            navigate("/farmers");
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("userName", response.data.userName);
+      localStorage.setItem("email", response.data.email);
 
-        } catch {
-            alert("Invalid Username or Password");
-        }
+      navigate("/farmers");
+    } catch {
+      alert("Invalid Username or Password");
     }
+  }
 
-    return (
-        <div className="login-container">
+  return (
+    <div className="login-container">
 
-            <div className="login-card">
+      {/* Left Side Background */}
+      <div
+        className="left-side"
+        style={{
+          backgroundImage: `url(${images[currentImage]})`,
+        }}
+      ></div>
 
-                <h1>Araku Naati</h1>
+      {/* Right Side Login */}
+      <div className="right-side">
 
-                <p>Sign in to continue</p>
+        <div className="login-card">
 
-                <form onSubmit={handleSubmit}>
+          <div className="image-container">
+            <img
+              src={agricultureImg}
+              alt="Agriculture"
+              className="login-image"
+            />
 
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        value={login.userName}
-                        onChange={(e) =>
-                            setLogin({
-                                ...login,
-                                userName: e.target.value
-                            })
-                        }
-                    />
+            <img
+              src={droneImg}
+              alt="Drone"
+              className="login-image"
+            />
+          </div>
 
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={login.password}
-                        onChange={(e) =>
-                            setLogin({
-                                ...login,
-                                password: e.target.value
-                            })
-                        }
-                    />
+          <h1>Araku Naati</h1>
 
-                    <div className="forgot-password">
-                        <Link to="/forgot-password">
-                            Forgot Password?
-                        </Link>
-                    </div>
+          <form onSubmit={handleSubmit}>
 
-                    <button type="submit">
-                        Login
-                    </button>
+            <input
+              type="text"
+              placeholder="Username"
+              value={login.userName}
+              onChange={(e) =>
+                setLogin({
+                  ...login,
+                  userName: e.target.value,
+                })
+              }
+            />
 
-                    <div className="powered-by">
-                        Powered by <strong>ERPXPERT</strong>
-                    </div>
-                </form>
+            <input
+              type="password"
+              placeholder="Password"
+              value={login.password}
+              onChange={(e) =>
+                setLogin({
+                  ...login,
+                  password: e.target.value,
+                })
+              }
+            />
 
+            <div className="forgot-password">
+              <Link to="/forgot-password">
+                Forgot Password?
+              </Link>
             </div>
 
+            <button type="submit">
+              Login
+            </button>
+
+            <div className="powered-by">
+              Powered by <strong>ERPXPERT</strong>
+            </div>
+
+          </form>
+
         </div>
-    );
+
+      </div>
+
+    </div>
+  );
 }

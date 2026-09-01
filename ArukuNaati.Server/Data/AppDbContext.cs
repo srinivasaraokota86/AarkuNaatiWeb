@@ -38,6 +38,10 @@ namespace ArukuNaati.Server.Data
         public DbSet<IntegrationSettings> IntegrationSettings { get; set; }
 
         public DbSet<FarmerPayment> FarmerPayment { get; set; }
+        public DbSet<FarmerPayments> FarmerPayments { get; set; }
+        public DbSet<Procurement> Procurements { get; set; }
+        public DbSet<QualityInspection> QualityInspections { get; set; }
+        public DbSet<Weighment> Weighments { get; set; }
 
     }
 }

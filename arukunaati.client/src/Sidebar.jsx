@@ -21,10 +21,61 @@ export default function Sidebar() {
                     <li><a href="/farmers">Farmers</a></li>
                     <li><a href="/customer">Customers</a></li>
                 </ul>
-                <div className="menu-heading">FPO Management</div>
+                {/* Procurement */}
+
+                <div className="menu-heading">
+                    Procurement
+                </div>
+
                 <ul className="menu-list">
-                    {/* ... */}
+
+                    <li>
+                        <Link to="/procurement-dashboard">
+                            Dashboard
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link to="/procurement">
+                            Procurements
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link to="/quality-inspection-list">
+                            Quality Inspection
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link to="/farmer-payments">
+                            Farmer Payments
+                        </Link>
+                    </li>
+
+                    {/* NEW MENU */}
+
+                    <li>
+                        <Link to="/weighment-list">
+                            Weighment
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link to="/stock-management">
+                            Stock Management
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link to="/reports">
+                            Reports
+                        </Link>
+                    </li>
+
                 </ul>
+
+
                 <div className="menu-heading">Configuration</div>
                 <ul className="menu-list">
                     <li>

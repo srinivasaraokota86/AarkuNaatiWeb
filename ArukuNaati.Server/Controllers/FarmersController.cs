@@ -41,7 +41,7 @@ namespace ArukuNaati.Server.Controllers
               return Ok(data);
           }*/
 
-        [HttpGet]
+        /*[HttpGet]
         public async Task<IActionResult> GetAll(int page = 1, int pageSize = 20)
         {
             var totalRecords = await _context.Farmers.CountAsync();
@@ -122,7 +122,63 @@ namespace ArukuNaati.Server.Controllers
                 pageSize,
                 data = result
             });
-        }
+        }*/
+          [HttpGet]
+          public async Task<IActionResult> GetAll(
+      int page = 1,
+      int pageSize = 10000)
+          {
+              try
+              {
+                  if (page < 1)
+                      page = 1;
+
+                  if (pageSize < 1)
+                      pageSize = 10000;
+
+                  var query = _context.Farmers
+                      .AsNoTracking()
+                      .Select(f => new
+                      {
+                          f.Id,
+                          f.FarmerCode,
+                          f.Name,
+                          f.Mobile,
+                          f.AadharNo,
+                          f.GSTNO,
+                          IsActive = f.ISActive,
+                          f.CreatedDate,
+                          Address = _context.FarmerAddresses.FirstOrDefault(a => a.FarmerId == f.Id),
+                          Payment = _context.FarmerPayment.FirstOrDefault(a => a.FarmerId == f.Id),
+                      });
+
+                  var totalRecords = await query.CountAsync();
+
+                  var data = await query
+                      .OrderBy(f => f.FarmerCode)
+                      .Skip((page - 1) * pageSize)
+                      .Take(pageSize)
+                      .ToListAsync();
+
+                  return Ok(new
+                  {
+                      totalRecords,
+                      page,
+                      pageSize,
+                      data
+                  });
+              }
+              catch (Exception ex)
+              {
+                  return StatusCode(
+                      500,
+                      new
+                      {
+                          message = "Error while retrieving farmers.",
+                          error = ex.Message
+                      });
+              }
+          }
 
         [HttpPost("register")]
         public async Task<IActionResult> RegisterFarmer([FromBody]
