@@ -1,0 +1,584 @@
+/* =========================================================
+   BOOKING LIST / GRID PAGE
+   ========================================================= */
+
+.booking-list {
+    width: 100%;
+    min-width: 0;
+    padding: 20px 30px;
+    background: #f5f5f5;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   BOOKING HEADER
+   ========================================================= */
+
+.booking-header {
+    width: 100%;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    padding: 0;
+}
+
+    .booking-header h1 {
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        font-size: 28px;
+        font-weight: 600;
+        color: #000;
+        white-space: nowrap;
+    }
+
+.new-booking-btn {
+    display: block;
+    width: auto !important;
+    min-width: 145px;
+    height: 45px;
+    margin: 0 0 0 auto !important;
+    padding: 0 22px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+    .new-booking-btn:hover {
+        background-color: #1b5e20;
+    }
+
+/* =========================================================
+   NEW BOOKING BUTTON
+   ========================================================= */
+
+.new-booking-btn {
+    min-width: 150px;
+    height: 45px;
+    padding: 0 22px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .new-booking-btn:hover {
+        background: #1b5e20;
+    }
+
+
+/* =========================================================
+   BOOKING TABLE CONTAINER
+   ========================================================= */
+
+.booking-table-container {
+    width: 100%;
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   BOOKING TABLE
+   ========================================================= */
+
+.booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1000px;
+}
+
+    .booking-table th {
+        background: #2e7d32;
+        color: white;
+        padding: 14px 12px;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+        border: 1px solid #ddd;
+    }
+
+    .booking-table td {
+        padding: 12px;
+        text-align: left;
+        font-size: 14px;
+        color: #333;
+        border: 1px solid #ddd;
+        background: white;
+        white-space: nowrap;
+    }
+
+    .booking-table tbody tr:hover td {
+        background: #f5f9f5;
+    }
+
+
+/* =========================================================
+   EMPTY GRID MESSAGE
+   ========================================================= */
+
+.no-bookings {
+    text-align: center;
+    padding: 30px;
+    color: #777;
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   BACK BUTTON - BOOKING FORM
+   ========================================================= */
+
+.back-btn {
+    padding: 10px 20px;
+    background: white;
+    color: #2e7d32;
+    border: 1px solid #2e7d32;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+    .back-btn:hover {
+        background: #f1f8f1;
+    }
+
+
+/* =========================================================
+   BOOKING FORM SECTION
+   ========================================================= */
+
+.booking-section {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+    .booking-section h2 {
+        text-align: left;
+        margin-bottom: 20px;
+        color: #2c3e50;
+        font-size: 22px;
+    }
+
+
+/* =========================================================
+   BOOKING FORM ROW
+   ========================================================= */
+
+.booking-form-row {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+
+/* =========================================================
+   BOOKING FORM GROUP
+   ========================================================= */
+
+.booking-form-group {
+    flex: 1;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+    .booking-form-group label {
+        text-align: left;
+        margin-bottom: 6px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #444;
+    }
+
+
+    /* =========================================================
+   BOOKING INPUT
+   ========================================================= */
+
+    .booking-form-group input {
+        width: 100%;
+        height: 48px;
+        padding: 0 20px;
+        border: 1px solid #d0d7de;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 16px;
+        outline: none;
+    }
+
+        .booking-form-group input:focus {
+            border-color: #4caf50;
+            box-shadow: 0 0 4px rgba(76, 175, 80, .4);
+        }
+
+
+    /* =========================================================
+   BOOKING SELECT
+   ========================================================= */
+
+    .booking-form-group select {
+        width: 100%;
+        height: 48px;
+        padding: 0 15px;
+        border: 1px solid #d0d7de;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 16px;
+        background: white;
+        outline: none;
+    }
+
+        .booking-form-group select:focus {
+            border-color: #4caf50;
+            box-shadow: 0 0 4px rgba(76, 175, 80, .4);
+        }
+
+
+    /* =========================================================
+   BOOKING TEXTAREA
+   ========================================================= */
+
+    .booking-form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #d0d7de;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 15px;
+        resize: vertical;
+        outline: none;
+        font-family: inherit;
+    }
+
+        .booking-form-group textarea:focus {
+            border-color: #4caf50;
+            box-shadow: 0 0 4px rgba(76, 175, 80, .4);
+        }
+
+
+/* =========================================================
+   FULL WIDTH FIELD
+   ========================================================= */
+
+.full-width {
+    width: 100%;
+}
+
+
+/* =========================================================
+   MAP BUTTON
+   ========================================================= */
+
+.map-button {
+    width: 100%;
+    padding: 14px;
+    border: 1px dashed #2e7d32;
+    border-radius: 8px;
+    color: #2e7d32;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+    .map-button:hover {
+        background: #f1f8f1;
+    }
+
+
+/* =========================================================
+   MAP HELP TEXT
+   ========================================================= */
+
+.map-help {
+    text-align: left;
+    margin-top: 8px;
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   SUBMIT BOOKING BUTTON
+   ========================================================= */
+
+.submit-booking-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #2e7d32;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+    .submit-booking-btn:hover {
+        background: #1b5e20;
+    }
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .booking-list {
+        padding: 20px;
+    }
+
+    .booking-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .new-booking-btn {
+        width: 100%;
+    }
+
+    .booking-form-row {
+        flex-direction: column;
+    }
+
+    .booking-form-group {
+        width: 100%;
+    }
+
+    .booking-table-container {
+        overflow-x: auto;
+    }
+}
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.action-cell {
+    white-space: nowrap;
+    text-align: left !important;
+    padding: 8px 10px !important;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start !important;
+    gap: 8px;
+    width: fit-content;
+}
+
+
+    /* =========================================================
+   EDIT / DELETE BUTTONS
+   ========================================================= */
+
+    .action-buttons .edit-btn,
+    .action-buttons .delete-btn {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        max-width: 28px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+        cursor: pointer;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: color 0.2s ease;
+    }
+
+
+    /* =========================================================
+   EDIT ICON
+   ========================================================= */
+
+    .action-buttons .edit-btn {
+        color: #2196f3 !important;
+    }
+
+        .action-buttons .edit-btn:hover {
+            color: #1976d2 !important;
+            background: transparent !important;
+        }
+
+
+    /* =========================================================
+   DELETE ICON
+   ========================================================= */
+
+    .action-buttons .delete-btn {
+        color: #f44336 !important;
+    }
+
+        .action-buttons .delete-btn:hover {
+            color: #d32f2f !important;
+            background: transparent !important;
+        }
+
+
+        /* =========================================================
+   ICON SIZE
+   ========================================================= */
+
+        .action-buttons .edit-btn svg,
+        .action-buttons .delete-btn svg {
+            width: 15px !important;
+            height: 15px !important;
+            display: block;
+            flex-shrink: 0;
+        }
+
+
+/* =====================================================
+   Booking Table Header Filters
+   ===================================================== */
+
+.booking-table thead th {
+    position: relative;
+    background-color: #2e7d32;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.filter-header {
+    position: relative;
+    padding: 10px 8px !important;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.filter-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+    .filter-icon-btn:hover {
+        color: #d5e8d5;
+    }
+
+    .filter-icon-btn svg {
+        width: 13px;
+        height: 13px;
+    }
+
+/* =====================================================
+   Filter Popup
+   ===================================================== */
+
+.column-filter-popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    width: 190px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    color: #333;
+}
+
+    .column-filter-popup input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 7px 8px;
+        border: 1px solid #bdbdbd;
+        border-radius: 3px;
+        font-size: 12px;
+        color: #333;
+        background-color: white;
+        outline: none;
+    }
+
+        .column-filter-popup input:focus {
+            border-color: #2e7d32;
+        }
+
+.popup-clear-btn {
+    margin-top: 8px;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 3px;
+    background-color: #2e7d32;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+    .popup-clear-btn:hover {
+        background-color: #256628;
+    }
+
+/* =====================================================
+   Clear Filters Button
+   ===================================================== */
+
+.booking-filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+}
+
+.clear-filter-btn {
+    padding: 7px 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: #2e7d32;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+    .clear-filter-btn:hover {
+        background-color: #256628;
+    }

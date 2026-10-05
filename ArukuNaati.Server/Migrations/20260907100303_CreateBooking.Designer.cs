@@ -4,6 +4,7 @@ using ArukuNaati.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArukuNaati.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260907100303_CreateBooking")]
+    partial class CreateBooking
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,17 +33,7 @@ namespace ArukuNaati.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AdditionalNotes")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("AlternateContact")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Crop")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CropStage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("District")
@@ -61,20 +54,6 @@ namespace ArukuNaati.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PreferredDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PreferredTime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProblemPurpose")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ServiceRequired")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

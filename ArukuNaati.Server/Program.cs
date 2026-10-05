@@ -18,7 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// CORS for React
+// CORS for React 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -27,6 +27,9 @@ builder.Services.AddCors(options =>
               .AllowAnyOrigin());
 });
 builder.Services.AddScoped<EmailService>();
+// Booking repository/service registrations
+builder.Services.AddScoped<ArukuNaati.Server.Repositories.IBookingRepository, ArukuNaati.Server.Repositories.BookingRepository>();
+builder.Services.AddScoped<ArukuNaati.Server.Services.IBookingService, ArukuNaati.Server.Services.BookingService>();
 
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<AcumaticaService>();

@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <SpaRoot>..\arukunaati.client</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
-    <SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
+	  <SpaProxyServerUrl>http://localhost:5179</SpaProxyServerUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,10 +26,6 @@
     <ProjectReference Include="..\arukunaati.client\arukunaati.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

@@ -123,11 +123,40 @@ export default function Sidebar() {
 
                     </li>
 
-                    <div className="menu-heading">Settings</div>
-                    <li><a href="/integrationSettingsList"> Integration Settings Form</a></li>
+                </ul>
+                <div className="menu-heading">Settings</div>
+                <ul className="menu-list">
+                    <li>
+                        Integration Settings Form
+                    </li> </ul>
 
+                    <div className="menu-heading">Drone Operation</div>
+                    <ul className="menu-list">
+                    <li>
 
+                        <Link to="/booking">
+                            Booking
+                        </Link>
 
+                    </li>
+                    <li>
+
+                        <Link to="/Pilot Management">
+
+                        Pilot Management
+
+                        </Link>
+
+                    </li>
+                    <li>
+
+                        <Link to="/Spray Tracking">
+
+                        Spray Tracking
+
+                        </Link>
+
+                    </li>
 
                 </ul>
             </div>
