@@ -32,7 +32,6 @@ namespace ArukuNaati.Server.Repositories
         public Task<bool> ExistsAsync(int id, CancellationToken ct = default)
             => _db.Bookings.AnyAsync(b => b.Id == id, ct);
 
-        public Task SaveChangesAsync(CancellationToken ct = default)
-            => _db.SaveChangesAsync(ct);
+        // SaveChanges handled by UnitOfWork
     }
 }

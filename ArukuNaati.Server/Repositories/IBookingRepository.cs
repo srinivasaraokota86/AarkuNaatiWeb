@@ -13,6 +13,6 @@ namespace ArukuNaati.Server.Repositories
         void Update(Booking booking);
         void Remove(Booking booking);
         Task<bool> ExistsAsync(int id, CancellationToken ct = default);
-        Task SaveChangesAsync(CancellationToken ct = default);
+        // SaveChanges moved to UnitOfWork
     }
 }

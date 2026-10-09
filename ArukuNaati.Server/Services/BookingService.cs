@@ -2,29 +2,35 @@ using ArukuNaati.Server.DTOs;
 using ArukuNaati.Server.Models;
 using ArukuNaati.Server.Repositories;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
+using System.Threading.Tasks;               
 
 namespace ArukuNaati.Server.Services
 {
     public class BookingService : IBookingService
     {
-        private readonly IBookingRepository _repo;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public BookingService(IBookingRepository repo) => _repo = repo;
+        public BookingService(IUnitOfWork unitOfWork, IMapper mapper)
+        {
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+        }
 
         public async Task<List<BookingDto>> GetAllAsync(CancellationToken ct = default)
         {
-            var items = await _repo.GetAllAsync(ct);
-            return items.Select(MapToDto).ToList();
+            var items = await _unitOfWork.Bookings.GetAllAsync(ct);
+            return items.Select(b => _mapper.Map<BookingDto>(b)).ToList();
         }
 
         public async Task<BookingDto?> GetByIdAsync(int id, CancellationToken ct = default)
         {
-            var b = await _repo.GetByIdAsync(id, ct);
-            return b == null ? null : MapToDto(b);
+            var b = await _unitOfWork.Bookings.GetByIdAsync(id, ct);
+            return b == null ? null : _mapper.Map<BookingDto>(b);
         }
 
         public async Task<BookingDto> CreateAsync(CreateBookingDto dto, CancellationToken ct = default)
@@ -50,15 +56,15 @@ namespace ArukuNaati.Server.Services
                 AdditionalNotes = dto.AdditionalNotes
             };
 
-            await _repo.AddAsync(entity, ct);
-            await _repo.SaveChangesAsync(ct);
+            await _unitOfWork.Bookings.AddAsync(entity, ct);
+            await _unitOfWork.SaveChangesAsync(ct);
 
-            return MapToDto(entity);
+            return _mapper.Map<BookingDto>(entity);
         }
 
         public async Task<bool> UpdateAsync(int id, UpdateBookingDto dto, CancellationToken ct = default)
         {
-            var existing = await _repo.GetByIdAsync(id, ct);
+            var existing = await _unitOfWork.Bookings.GetByIdAsync(id, ct);
             if (existing == null) return false;
 
             existing.FarmerName = dto.FarmerName;
@@ -79,50 +85,27 @@ namespace ArukuNaati.Server.Services
             existing.PreferredTime = dto.PreferredTime;
             existing.AdditionalNotes = dto.AdditionalNotes;
 
-            _repo.Update(existing);
+            _unitOfWork.Bookings.Update(existing);
 
             try
             {
-                await _repo.SaveChangesAsync(ct);
+                await _unitOfWork.SaveChangesAsync(ct);
                 return true;
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!await _repo.ExistsAsync(id, ct)) return false;
+                if (!await _unitOfWork.Bookings.ExistsAsync(id, ct)) return false;
                 throw;
             }
         }
 
         public async Task<bool> DeleteAsync(int id, CancellationToken ct = default)
         {
-            var existing = await _repo.GetByIdAsync(id, ct);
+            var existing = await _unitOfWork.Bookings.GetByIdAsync(id, ct);
             if (existing == null) return false;
-
-            _repo.Remove(existing);
-            await _repo.SaveChangesAsync(ct);
+            _unitOfWork.Bookings.Remove(existing);
+            await _unitOfWork.SaveChangesAsync(ct);
             return true;
         }
-
-        private static BookingDto MapToDto(Booking b) => new BookingDto
-        {
-            Id = b.Id,
-            FarmerName = b.FarmerName,
-            MobileNumber = b.MobileNumber,
-            FpoOrganization = b.FpoOrganization,
-            AlternateContact = b.AlternateContact,
-            State = b.State,
-            District = b.District,
-            Mandal = b.Mandal,
-            Village = b.Village,
-            SurveyNumber = b.SurveyNumber,
-            LandArea = b.LandArea,
-            ServiceRequired = b.ServiceRequired,
-            Crop = b.Crop,
-            CropStage = b.CropStage,
-            ProblemPurpose = b.ProblemPurpose,
-            PreferredDate = b.PreferredDate,
-            PreferredTime = b.PreferredTime,
-            AdditionalNotes = b.AdditionalNotes
-        };
     }
 }

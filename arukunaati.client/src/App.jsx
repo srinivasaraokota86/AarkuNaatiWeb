@@ -35,6 +35,7 @@ import PaymentList from "./PaymentList";
 
 import Booking from "./Booking";
 import BookingCreate from "./BookingCreate";
+import PilotManagement from "./PilotManagement";
 
 
 export default function App() {
@@ -78,6 +79,10 @@ export default function App() {
                         element={<Profile />}
                     />
 
+                    <Route
+                        path="/Pilot Management"
+                        element={<PilotManagement />}
+                    />
 
                     {/* ================= CUSTOMER ================= */}
 

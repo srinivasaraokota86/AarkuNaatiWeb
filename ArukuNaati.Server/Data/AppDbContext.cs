@@ -27,6 +27,7 @@ namespace ArukuNaati.Server.Data
 
         // public DbSet<IrrigationType> IrrigationTypes { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Pilot> Pilots { get; set; }
 
         public DbSet<State> States { get; set; }
 
