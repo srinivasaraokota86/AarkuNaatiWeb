@@ -17,15 +17,17 @@ namespace ArukuNaati.Server.Data
 
         public DbSet<FarmerAddress> FarmerAddresses { get; set; }
 
-       // public DbSet<FarmerLand> FarmerLands { get; set; }
+        // public DbSet<FarmerLand> FarmerLands { get; set; }
 
-       // public DbSet<FarmerCrop> FarmerCrops { get; set; }
+        // public DbSet<FarmerCrop> FarmerCrops { get; set; }
 
         //public DbSet<CropType> CropTypes { get; set; }
 
         //public DbSet<SoilType> SoilTypes { get; set; }
 
-       // public DbSet<IrrigationType> IrrigationTypes { get; set; }
+        // public DbSet<IrrigationType> IrrigationTypes { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Pilot> Pilots { get; set; }
 
         public DbSet<State> States { get; set; }
 

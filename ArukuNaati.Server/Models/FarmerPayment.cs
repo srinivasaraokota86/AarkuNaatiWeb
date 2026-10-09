@@ -10,7 +10,7 @@ namespace ArukuNaati.Server.Models
         [Key]
         public int Id { get; set; }
 
-        [StringLength(20)]
+        [StringLength(450)]
         public string? FarmerId { get; set; }
 
         [ForeignKey(nameof(FarmerId))]
